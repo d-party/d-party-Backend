@@ -1,0 +1,56 @@
+version: '3.8'
+x-environment:
+  &environment
+  MY_DOMAIN: d-party.net
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:1.21
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./nginx/:/etc/nginx/"
+      - "./Django/static:/static"
+      - "./nginx/.well-known:/.well-known"
+    depends_on:
+      - django
+  django:
+    container_name: Django
+    build:
+      context: Django
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - ./Django/:/usr/src/app/
+    command: "sh entorypoint.sh"
+    env_file: ./Django/.env.django
+    environment: *environment
+    depends_on:
+      - mysql
+      - redis
+  mysql:
+    image: mysql:8.0
+    container_name: MySQL
+    ports:
+      - 3306:3306
+    volumes:
+      - "./MySQL/data:/var/lib/mysql"
+      - "./MySQL/my.cnf:/etc/mysql/conf.d/my.cnf"
+    env_file: ./MySQL/.env.mysql
+  phpmyadmin:
+    container_name: phpMyAdmin
+    image: phpmyadmin/phpmyadmin
+    env_file: ./phpMyAdmin/.env.phpmyadmin
+    links:
+      - mysql
+    ports:
+      - 8080:80
+    volumes:
+      - "./phpMyAdmin/sessions:/sessions"
+  redis:
+    image: redis:6.2
+    container_name: Redis
+    ports:
+      - 6379:6379

@@ -1,0 +1,12 @@
+{% extends "layout.html" %} {% load static %}
+{%block stylesheet %} <script src="{% static "web/js/index.js" %}"></script> {% endblock %} 
+{% block content %}
+<!-- Flickity HTML init -->
+<div class="carousel"
+  data-flickity='{ "imagesLoaded": true, "percentPosition": false }'>
+    <img src="{% static "web/img/screenshot_reaction.png" %}" alt="cat nose"  class="carousel-image"/>
+    <img src="{% static "web/img/screenshot_reaction.png" %}" alt="cat nose"  class="carousel-image"/>
+    <img src="{% static "web/img/screenshot_reaction.png" %}" alt="cat nose"  class="carousel-image"/>
+    <img src="{% static "web/img/screenshot_reaction.png" %}" alt="cat nose"  class="carousel-image"/>
+</div>
+{% endblock %}
