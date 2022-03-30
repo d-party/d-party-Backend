@@ -3,10 +3,14 @@
 {% block content %}
 <!-- Flickity HTML init -->
 <div class="carousel"
-  data-flickity='{ "imagesLoaded": true, "percentPosition": false }'>
-    <img src="{% static "web/img/screenshot_reaction.png" %}" alt="cat nose"  class="carousel-image"/>
-    <img src="{% static "web/img/screenshot_reaction.png" %}" alt="cat nose"  class="carousel-image"/>
-    <img src="{% static "web/img/screenshot_reaction.png" %}" alt="cat nose"  class="carousel-image"/>
-    <img src="{% static "web/img/screenshot_reaction.png" %}" alt="cat nose"  class="carousel-image"/>
+  data-flickity='{ "imagesLoaded": true, "percentPosition": false, "autoPlay": 5000}'>
+    <img src="{% static "web/img/usage/step1_login.png" %}" alt="step1"  class="carousel-image"/>
+    <img src="{% static "web/img/usage/step2_pin.png" %}" alt="step2"  class="carousel-image"/>
+    <img src="{% static "web/img/usage/step3_setting.png" %}" alt="step3"  class="carousel-image"/>
+    <img src="{% static "web/img/usage/step4_anime_list.png" %}" alt="step4"  class="carousel-image"/>
+    <img src="{% static "web/img/usage/step5_anime_list.png" %}" alt="step5"  class="carousel-image"/>
+    <img src="{% static "web/img/usage/step6_room.png" %}" alt="step6"  class="carousel-image"/>
+    <img src="{% static "web/img/usage/step7_share.png" %}" alt="step7"  class="carousel-image"/>
+    <img src="{% static "web/img/usage/step8_endcard.png" %}" alt="step8"  class="carousel-image"/>
 </div>
 {% endblock %}
