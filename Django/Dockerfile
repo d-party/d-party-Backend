@@ -11,3 +11,6 @@ ENV PYTHONUNBUFFERED 1
 RUN pip install poetry
 ADD pyproject.toml /usr/src/app
 RUN poetry install --no-root
+
+RUN apt-get update
+RUN apt-get install -y graphviz

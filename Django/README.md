@@ -1,7 +1,7 @@
 # Django Container
 
 [![Python](https://img.shields.io/badge/Python:3.10-F9DC3E.svg?logo=python&style=flat)](https://www.python.org/)
-[![Django:4.x](https://img.shields.io/badge/Django:4.0-092E20.svg?logo=django&style=flat)](https://www.djangoproject.com/) 
+[![Django:4.x](https://img.shields.io/badge/Django:4.0-092E20.svg?logo=django&style=flat)](https://www.djangoproject.com/)
 
 ## intro
 
@@ -27,7 +27,6 @@ APIエンドポイントを定義するためのアプリ
 バージョンチェックAPIなどに使用
 
 [Django REST framework](https://www.django-rest-framework.org/)によって構築
-
 
 ## library
 
