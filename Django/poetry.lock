@@ -146,11 +146,11 @@ tests = ["pytest", "pytest-django", "pytest-asyncio", "async-timeout", "coverage
 
 [[package]]
 name = "channels-redis"
-version = "3.3.1"
+version = "3.4.0"
 description = "Redis-backed ASGI channel layer implementation"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
 aioredis = ">=1.0,<2.0"
@@ -226,7 +226,7 @@ tests = ["hypothesis (==4.23)", "pytest (>=3.10,<4.0)", "pytest-asyncio (>=0.8,<
 
 [[package]]
 name = "django"
-version = "4.0.1"
+version = "4.0.3"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
 category = "main"
 optional = false
@@ -670,7 +670,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "twisted"
-version = "22.1.0"
+version = "22.2.0"
 description = "An asynchronous networking framework written in Python"
 category = "main"
 optional = false
@@ -828,7 +828,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "248448d6eef68aa318c4110b2864c1f37b97840d9f51af6c9b8879842eb9d0a2"
+content-hash = "5f8c2d1adf7748a893616ce7d4ea0f27919d0e0db615745746661cc2cd638a44"
 
 [metadata.files]
 aioredis = [
@@ -919,8 +919,8 @@ channels = [
     {file = "channels-3.0.4.tar.gz", hash = "sha256:fdd9a94987a23d8d7ebd97498ed8b8cc83163f37e53fc6c85098aba7a3bb8b75"},
 ]
 channels-redis = [
-    {file = "channels_redis-3.3.1-py3-none-any.whl", hash = "sha256:fbb24a7a57a6cc0ebe5aa121cdf841eabf845cf47dd5c1059224ef4d64aeaeac"},
-    {file = "channels_redis-3.3.1.tar.gz", hash = "sha256:899dc6433f5416cf8ad74505baaf2acb5461efac3cad40751a41119e3f68421b"},
+    {file = "channels_redis-3.4.0-py3-none-any.whl", hash = "sha256:6e4565b7c11c6bcde5d48556cb83bd043779697ff03811867d2f895aa6170d56"},
+    {file = "channels_redis-3.4.0.tar.gz", hash = "sha256:5dffd4cc16174125bd4043fc8fe7462ca7403cf801d59a9fa7410ed101fa6a57"},
 ]
 click = [
     {file = "click-8.0.3-py3-none-any.whl", hash = "sha256:353f466495adaeb40b6b5f592f9f91cb22372351c84caeb068132442a4518ef3"},
@@ -961,8 +961,8 @@ daphne = [
     {file = "daphne-3.0.2.tar.gz", hash = "sha256:76ffae916ba3aa66b46996c14fa713e46004788167a4873d647544e750e0e99f"},
 ]
 django = [
-    {file = "Django-4.0.1-py3-none-any.whl", hash = "sha256:7cd8e8a3ed2bc0dfda05ce1e53a9c81b30eefd7aa350e538a18884475e4d4ce2"},
-    {file = "Django-4.0.1.tar.gz", hash = "sha256:2485eea3cc4c3bae13080dee866ebf90ba9f98d1afe8fda89bfb0eb2e218ef86"},
+    {file = "Django-4.0.3-py3-none-any.whl", hash = "sha256:1239218849e922033a35d2a2f777cb8bee18bd725416744074f455f34ff50d0c"},
+    {file = "Django-4.0.3.tar.gz", hash = "sha256:77ff2e7050e3324c9b67e29b6707754566f58514112a9ac73310f60cd5261930"},
 ]
 django-boost = [
     {file = "django_boost-2.0-py3-none-any.whl", hash = "sha256:266c22a5a7bdae480cfdc337b11073e1e906521a4f9c5b3dbb7e15bfeb916065"},
@@ -1303,8 +1303,8 @@ tomli = [
     {file = "tomli-1.2.3.tar.gz", hash = "sha256:05b6166bff487dc068d322585c7ea4ef78deed501cc124060e0f238e89a9231f"},
 ]
 twisted = [
-    {file = "Twisted-22.1.0-py3-none-any.whl", hash = "sha256:ccd638110d9ccfdc003042aa3e1b6d6af272eaca45d36e083359560549e3e848"},
-    {file = "Twisted-22.1.0.tar.gz", hash = "sha256:b7971ec9805b0f80e1dcb1a3721d7bfad636d5f909de687430ce373979d67b61"},
+    {file = "Twisted-22.2.0-py3-none-any.whl", hash = "sha256:5c63c149eb6b8fe1e32a0215b1cef96fabdba04f705d8efb9174b1ccf5b49d49"},
+    {file = "Twisted-22.2.0.tar.gz", hash = "sha256:57f32b1f6838facb8c004c89467840367ad38e9e535f8252091345dba500b4f2"},
 ]
 twisted-iocpsupport = [
     {file = "twisted-iocpsupport-1.0.2.tar.gz", hash = "sha256:72068b206ee809c9c596b57b5287259ea41ddb4774d86725b19f35bf56aa32a9"},
