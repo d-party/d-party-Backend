@@ -8,25 +8,25 @@ packages = [{include = "d_party"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-Django = "^4.0.0"
+Django = "^4.0.3"
 channels = "^3.0.4"
 gunicorn = "^20.1.0"
 mysqlclient = "^2.1.0"
 channels-redis = "^3.3.1"
-uvicorn = {extras = ["standard"], version = "^0.16.0"}
+uvicorn = {extras = ["standard"], version = "^0.17.6"}
 django-debug-toolbar = "^3.2.4"
 django-jazzmin = "^2.4.0"
 pydantic = "^1.9.0"
 django-boost = "^2.0"
 djangorestframework = "^3.13.1"
 django-filter = "^21.1"
-djangochannelsrestframework = "^0.3.0"
+djangochannelsrestframework = "^1.0.0"
 
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.2.5"
+pytest = "^7.1.1"
 pytest-django = "^4.5.2"
-black = "^21.12b0"
+black = "^22.3.0"
 pytest-asyncio = "^0.18.1"
 [build-system]
 requires = ["poetry-core"]
