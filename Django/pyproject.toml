@@ -13,7 +13,7 @@ channels = "^3.0.4"
 gunicorn = "^20.1.0"
 mysqlclient = "^2.1.0"
 channels-redis = "^3.3.1"
-uvicorn = {extras = ["standard"], version = "^0.16.0"}
+uvicorn = {extras = ["standard"], version = "^0.17.6"}
 django-debug-toolbar = "^3.2.4"
 django-jazzmin = "^2.4.0"
 pydantic = "^1.9.0"
