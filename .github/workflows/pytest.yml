@@ -10,10 +10,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 2
-      matrix:
-        python-version: [3.10]
     steps:
       - uses: actions/checkout@v3
       - name: run docker-compose
@@ -24,7 +20,7 @@ jobs:
           docker-compose exec -T django poetry run python manage.py makemigrations
           docker-compose exec -T django poetry run python manage.py makemigrations streamer
           docker-compose exec -T django poetry run python manage.py migrate
-          docker-compose exec -T django poetry run python manage.py collectstatic
+          docker-compose exec -T django poetry run python manage.py collectstatic --noinput
       - name: run pytest
         run: |
-          docker-compose exec django poetry run pytest --cov
+          docker-compose exec -T django poetry run pytest --cov
