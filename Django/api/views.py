@@ -26,8 +26,8 @@ class ChromeExtensionVersionCheckAPI(APIView):
 
         """
         if "extension-version" in request.GET:
-            current_version = request.GET.get("extension-version")
-            required_version = str(os.getenv("CHROME_EXTENSION_REQUIRED_VERSION"))
+            current_version: str = str(request.GET.get("extension-version"))
+            required_version: str = str(os.getenv("CHROME_EXTENSION_REQUIRED_VERSION"))
             try:
                 current_strict_version = StrictVersion(current_version)
                 required_strict_version = StrictVersion(required_version)
