@@ -1,0 +1,29 @@
+name: Django pytest
+
+on:
+  push:
+    branches:    
+      - main
+  pull_request:
+    branches:    
+      - main
+      - develop
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v3
+      - name: run docker-compose
+        run: |
+          docker-compose up -d
+      - name: init containers
+        run: |
+          docker-compose exec -T django poetry run python manage.py makemigrations
+          docker-compose exec -T django poetry run python manage.py makemigrations streamer
+          docker-compose exec -T django poetry run python manage.py migrate
+          docker-compose exec -T django poetry run python manage.py collectstatic --noinput
+      - name: run pytest
+        run: |
+          docker-compose exec -T django poetry run pytest --cov
