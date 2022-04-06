@@ -1,12 +1,12 @@
 # Backend
+[![Django pytest](https://github.com/d-party/d-party-Backend/actions/workflows/pytest.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/pytest.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/d-Party/d-Party-Backend/blob/main/LICENSE)
 
 [![Docker](https://img.shields.io/badge/-Docker-EEE.svg?logo=docker&style=flat)](https://www.docker.com/)
 [![Python](https://img.shields.io/badge/Python:3.10-F9DC3E.svg?logo=python&style=flat)](https://www.python.org/)
 [![Django:4.x](https://img.shields.io/badge/Django:4.0-092E20.svg?logo=django&style=flat)](https://www.djangoproject.com/)
 [![Nginx](https://img.shields.io/badge/-Nginx-5.svg?logo=nginx&style=flat)](https://www.nginx.co.jp/)
 [![Redis](https://img.shields.io/badge/Redis:6.2-511.svg?logo=redis&style=flat)](https://redis.io/)
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/d-Party/d-Party-Backend/blob/main/LICENSE)
 
 d-Party のバックエンド部分を担当するフォルダ
 
@@ -33,10 +33,19 @@ docker-compose up -d
 
 settings.py で`debug = True`においてコンテナを起動させた場合に 8000 ポートにデプロイされている Django コンテナに直接アクセスすることで、django-debug-toolbar が有効に働きます。
 
-### 開発環境を初期化したい
+### 開発環境を初期化
 
 開発環境を初期化したい場合以下の手順をたどってください
 
 1. コンテナの停止(`docker-compose down`)
 2. MySQL ディレクトリにある data ディレクトリを中身ごと削除する
 3. Django/streamer ディレクトリにある migrations ディレクトリを中身事削除する
+
+
+### テストを実行
+
+テストを実行したい場合、全てのコンテナを立ち上げてから、以下のコマンドを実行してください。
+
+```
+docker-compose exec django poetry run pytest --cov
+```
