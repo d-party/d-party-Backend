@@ -11,9 +11,9 @@ class User(BaseModel):
         user_id ([UUID]): uuid形式で記述されたid
         user_name([str]): strで記述された名前
     """
+
     user_id: UUID
     user_name: str
-
 
 
 class ResponseBaseFormat(BaseModel):
@@ -24,7 +24,9 @@ class ResponseBaseFormat(BaseModel):
     attirbutes:
         action ([str]): joinやleaveなどの文字列
     """
+
     action: str
+
 
 class Join(ResponseBaseFormat):
     action: str = "join"
@@ -65,9 +67,10 @@ class OperationNotification(ResponseBaseFormat):
     operation: str
     user: User
 
+
 class Reaction(ResponseBaseFormat):
     action: str = "reaction"
-    reaction_type:str
+    reaction_type: str
 
 
 class SyncRequest(ResponseBaseFormat):
@@ -89,13 +92,16 @@ class Leave(ResponseBaseFormat):
     action: str = "leave"
     user: User
 
+
 class ServerMessage(ResponseBaseFormat):
     action: str = "server_message"
-    message_type:str
+    message_type: str
+
 
 class UserList(ResponseBaseFormat):
     action: str = "user_list"
-    user_list:List[User]
+    user_list: List[User]
+
 
 class BaseGroupSend(BaseModel):
     type: str
@@ -106,8 +112,10 @@ class BaseGroupSend(BaseModel):
 class GroupSend(BaseGroupSend):
     type: str = "group_send"
 
+
 class RoomSend(BaseGroupSend):
     type: str = "room_send"
+
 
 class HostSend(BaseGroupSend):
     type: str = "host_send"

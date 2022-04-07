@@ -15,7 +15,9 @@ class AnimeRoom(LogicalDeletionMixin):
 class AnimeUser(LogicalDeletionMixin):
     user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user_name = models.CharField(default="user", max_length=20)
-    room_id = models.ForeignKey(AnimeRoom, on_delete=models.CASCADE,related_name="inroom")
+    room_id = models.ForeignKey(
+        AnimeRoom, on_delete=models.CASCADE, related_name="inroom"
+    )
     is_host = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
