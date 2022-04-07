@@ -27,13 +27,13 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG") == "1"
 
-ALLOWED_HOSTS = [os.environ.get("MY_DOMAIN"),"www."+os.environ.get("MY_DOMAIN")]
+ALLOWED_HOSTS = [os.environ.get("MY_DOMAIN"), "www." + os.environ.get("MY_DOMAIN")]
 if DEBUG:
-    ALLOWED_HOSTS+=["*"]
+    ALLOWED_HOSTS += ["*"]
 CSRF_TRUSTED_ORIGINS = [
-    "https://*."+os.environ.get("MY_DOMAIN"),
+    "https://*." + os.environ.get("MY_DOMAIN"),
     "https://*.127.0.0.1",
-    "wss://*."+os.environ.get("MY_DOMAIN"),
+    "wss://*." + os.environ.get("MY_DOMAIN"),
     "wss://*.127.0.0.1",
 ]
 
@@ -65,10 +65,9 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    
 ]
 if DEBUG:
-    MIDDLEWARE+=["debug_toolbar.middleware.DebugToolbarMiddleware"]
+    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
 
 ROOT_URLCONF = "d_party.urls"
 
@@ -104,9 +103,9 @@ CHANNEL_LAYERS = {
 DATABASES = {
     "default": {
         "ENGINE": os.environ.get("DATABASE_ENGINE"),
-        "NAME": os.environ.get("DATABASE_NAME"),
+        "NAME": os.environ.get("MYSQL_DATABASE"),
         "USER": os.environ.get("DATABASE_USER"),
-        "PASSWORD": os.environ.get("DATABASE_PASSWORD"),
+        "PASSWORD": os.environ.get("MYSQL_ROOT_PASSWORD"),
         "HOST": os.environ.get("DATABASE_HOST"),
         "PORT": os.environ.get("DATABASE_PORT"),
         "TEST": {

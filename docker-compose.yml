@@ -1,7 +1,9 @@
 version: '3.8'
-x-environment:
-  &environment
-  MY_DOMAIN: d-party.net
+
+x-env_file:
+  &env_file
+  ./.env.global
+    
 services:
   nginx:
     container_name: nginx
@@ -15,6 +17,7 @@ services:
       - "./nginx/.well-known:/.well-known"
     depends_on:
       - django
+    env_file: *env_file
   django:
     container_name: Django
     build:
@@ -25,8 +28,9 @@ services:
     volumes:
       - ./Django/:/usr/src/app/
     command: "sh entorypoint.sh"
-    env_file: ./Django/.env.django
-    environment: *environment
+    env_file: 
+      - ./Django/.env.django
+      - *env_file
     depends_on:
       - mysql
       - redis
@@ -38,11 +42,15 @@ services:
     volumes:
       - "./MySQL/data:/var/lib/mysql"
       - "./MySQL/my.cnf:/etc/mysql/conf.d/my.cnf"
-    env_file: ./MySQL/.env.mysql
+    env_file: 
+      - ./MySQL/.env.mysql
+      - *env_file
   phpmyadmin:
     container_name: phpMyAdmin
     image: phpmyadmin/phpmyadmin
-    env_file: ./phpMyAdmin/.env.phpmyadmin
+    env_file: 
+      - ./phpMyAdmin/.env.phpmyadmin
+      - *env_file
     links:
       - mysql
     ports:
