@@ -28,13 +28,14 @@ from .format import (
     Reaction,
     ServerMessage,
     VideoOperation,
-    UserList
+    UserList,
 )
 from .util import is_valid_uuid, uuid_json_encoder
 
 
 class AnimePartyConsumer(GenericAsyncAPIConsumer):
-    permission_classes=()
+    permission_classes = ()
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         json.JSONEncoder.default = uuid_json_encoder
@@ -56,11 +57,9 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
         await self.leave_party()
 
     @action()
-    async def create(self,part_id,user_name,**kwargs):
+    async def create(self, part_id, user_name, **kwargs):
         # create room
-        self.anime_room = await self.database_create_room(
-            part_id=part_id
-        )
+        self.anime_room = await self.database_create_room(part_id=part_id)
         # create user
         self.anime_user = await self.database_create_user(
             user_name=user_name,
@@ -74,7 +73,7 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
         create = Create(room_id=self.anime_room.room_id, user=user)
         await self.send(text_data=json.dumps(create.dict()))
         user_list = await self.database_user_list()
-        user_list_data=UserList(user_list=user_list)
+        user_list_data = UserList(user_list=user_list)
         response_data = RoomSend(
             response=user_list_data,
             sender_channel_name=self.channel_name,
@@ -84,9 +83,8 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
             json.loads(json.dumps(response_data.dict())),
         )
 
-
     @action()
-    async def join(self,room_id:uuid,user_name:str,**kwargs):
+    async def join(self, room_id: uuid, user_name: str, **kwargs):
         """joinを受け取った場合のアクション
         joinを受け取った場合、ルームが存在していればルームに参加する
 
@@ -95,9 +93,7 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
             user_name (str): ユーザーが指定する事ができるユーザー名
         """
         # 接続要求されたルームのオブジェクトがあれば取得
-        self.anime_room = await self.database_get_or_none_room(
-            room_id=room_id
-        )
+        self.anime_room = await self.database_get_or_none_room(room_id=room_id)
         if self.anime_room is None:
             # ルームが存在していない場合はfaildを送信してルームから離脱
             data_json = {"action": "server_message", "message": "failed_join"}
@@ -125,7 +121,7 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
             json.loads(json.dumps(response_data.dict())),
         )
         user_list = await self.database_user_list()
-        user_list_data=UserList(user_list=user_list)
+        user_list_data = UserList(user_list=user_list)
         response_data = RoomSend(
             response=user_list_data,
             sender_channel_name=self.channel_name,
@@ -134,18 +130,18 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
             str(self.anime_room.room_id),
             json.loads(json.dumps(response_data.dict())),
         )
-        
+
     @action()
-    async def leave(self,**kwargs):
+    async def leave(self, **kwargs):
         """leaveを受け取った場合のアクション
         websocketを終了する
         """
         await self.database_renew_state()
         await self.close()
 
-    # send method    
+    # send method
     @action()
-    async def video_operation(self,operation:str,option:dict,**kwargs):
+    async def video_operation(self, operation: str, option: dict, **kwargs):
         """video_operationを受け取った場合のアクション
         video_operationを送信元以外のクライアントに対して送信し、画面を同期する
 
@@ -173,11 +169,11 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
             str(self.anime_room.room_id),
             json.loads(json.dumps(response_data.dict())),
         )
-    
+
     @action()
-    async def sync_request(self,**kwargs):
+    async def sync_request(self, **kwargs):
         """sync_requestを受け取った場合のアクション
-        sync_requestはホストの状態に動画プレイヤーを同期を要求するアクション        
+        sync_requestはホストの状態に動画プレイヤーを同期を要求するアクション
         """
         await self.database_renew_state()
         sync_request = SyncRequest(user=User(**self.anime_user.__dict__).dict())
@@ -188,9 +184,10 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
         await self.channel_layer.group_send(
             str(self.anime_room.room_id),
             json.loads(json.dumps(response_data.dict())),
-        )    
+        )
+
     @action()
-    async def sync_response(self,to_user:uuid,option:dict,**kwargs):
+    async def sync_response(self, to_user: uuid, option: dict, **kwargs):
         """sync_responseを受け取った場合のアクション
         sync_responseはsync_requestを送信したユーザーに対する返信
 
@@ -211,7 +208,7 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
         )
 
     @action()
-    async def operation_notification(self,operation:str,**kwargs):
+    async def operation_notification(self, operation: str, **kwargs):
         """operation_notificationを受け取った場合のアクション
 
         Args:
@@ -232,7 +229,7 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
         )
 
     @action()
-    async def reaction(self,reaction_type:str,**kwargs):
+    async def reaction(self, reaction_type: str, **kwargs):
         """reactionを受け取った場合のアクション
 
         Args:
@@ -248,11 +245,10 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
         )
 
     @action()
-    async def user_list(self ,**kwargs):
-        """user_listを受け取った場合のアクション
-        """
+    async def user_list(self, **kwargs):
+        """user_listを受け取った場合のアクション"""
         user_list = await self.database_user_list()
-        response_data=UserList(user_list=user_list)
+        response_data = UserList(user_list=user_list)
         await self.send(text_data=json.dumps(response_data.dict()))
 
     async def room_send(self, data: dict):
@@ -293,7 +289,6 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
             self.anime_user.user_id
         ) == str(data["to_user"]["user_id"]):
             await self.send(text_data=json.dumps(data["response"]))
-    
 
     async def leave_party(self):
         """サーバーから離脱する場合の共通処理
@@ -309,24 +304,26 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
 
         await self.database_delete_user()
         await self.database_decrease_num_people()
-        user_count=await self.database_get_user_count()
+        user_count = await self.database_get_user_count()
         if user_count < 1:
             await self.database_delete_room()
-        if user_count>=1 and self.anime_user.is_host:
-            next_host=await self.database_get_next_host_or_none()
+        if user_count >= 1 and self.anime_user.is_host:
+            next_host = await self.database_get_next_host_or_none()
             await self.database_host_change_user(next_host.user_id)
             server_message = ServerMessage(message_type="host_change")
-            send_data=HostSend(response=server_message,sender_channel_name=self.channel_name)
+            send_data = HostSend(
+                response=server_message, sender_channel_name=self.channel_name
+            )
             await self.channel_layer.group_send(
-                    str(self.anime_room.room_id),
-                    json.loads(json.dumps(send_data.dict())),
-                )
+                str(self.anime_room.room_id),
+                json.loads(json.dumps(send_data.dict())),
+            )
         await self.channel_layer.group_send(
             str(self.anime_room.room_id),
             json.loads(json.dumps(response_data.dict())),
         )
         user_list = await self.database_user_list()
-        user_list_data=UserList(user_list=user_list)
+        user_list_data = UserList(user_list=user_list)
         response_data = RoomSend(
             response=user_list_data,
             sender_channel_name=self.channel_name,
@@ -411,16 +408,15 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
 
     @database_sync_to_async
     def database_get_next_host_or_none(self):
-        ar=AnimeRoom.objects.get(room_id=self.anime_room.room_id)
+        ar = AnimeRoom.objects.get(room_id=self.anime_room.room_id)
         return ar.inroom.alive().earliest("created_at")
 
     @database_sync_to_async
     def database_get_user_count(self):
-        """ルーム内の人数を取得する
-        """
-        ar=AnimeRoom.objects.get(room_id=self.anime_room.room_id)
+        """ルーム内の人数を取得する"""
+        ar = AnimeRoom.objects.get(room_id=self.anime_room.room_id)
         return ar.inroom.alive().count()
-        
+
     @database_sync_to_async
     def database_get_or_none_room(self, room_id):
         """ルームが存在していれば、ルームのオブジェクトを取得、そうでなければNoneを返す
@@ -440,25 +436,23 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
             return None
 
     @database_sync_to_async
-    def database_host_change_user(self, user_id): 
-        au=AnimeUser.objects.get(user_id=user_id)
-        au.is_host=True
+    def database_host_change_user(self, user_id):
+        au = AnimeUser.objects.get(user_id=user_id)
+        au.is_host = True
         au.save()
         return au
 
     @database_sync_to_async
     def database_renew_state(self):
-        """インスタンス化しているユーザー情報とルーム情報をデータベースに合わせる
-        """
-        user_id=self.anime_user.user_id
-        self.anime_user=AnimeUser.objects.get(user_id=user_id)
-        room_id=self.anime_room.room_id
-        self.anime_room=AnimeRoom.objects.get(room_id=room_id)
+        """インスタンス化しているユーザー情報とルーム情報をデータベースに合わせる"""
+        user_id = self.anime_user.user_id
+        self.anime_user = AnimeUser.objects.get(user_id=user_id)
+        room_id = self.anime_room.room_id
+        self.anime_room = AnimeRoom.objects.get(room_id=room_id)
 
     @database_sync_to_async
     def database_user_list(self):
-        """ルーム内のユーザーを取得する
-        """
-        ar=AnimeRoom.objects.get(room_id=self.anime_room.room_id)
-        user_list=ar.inroom.alive().values("user_name","user_id")
+        """ルーム内のユーザーを取得する"""
+        ar = AnimeRoom.objects.get(room_id=self.anime_room.room_id)
+        user_list = ar.inroom.alive().values("user_name", "user_id")
         return list(user_list)
