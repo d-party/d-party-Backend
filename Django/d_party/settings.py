@@ -31,7 +31,9 @@ ALLOWED_HOSTS = [os.environ.get("MY_DOMAIN"), "www." + os.environ.get("MY_DOMAIN
 if DEBUG:
     ALLOWED_HOSTS += ["*"]
 CSRF_TRUSTED_ORIGINS = [
-    "https://*." + os.environ.get("MY_DOMAIN"),"https://*.127.0.0.1","wss://*." + os.environ.get("MY_DOMAIN"),
+    "https://*." + os.environ.get("MY_DOMAIN"),
+    "https://*.127.0.0.1",
+    "wss://*." + os.environ.get("MY_DOMAIN"),
     "wss://*.127.0.0.1",
 ]
 
