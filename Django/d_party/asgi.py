@@ -22,15 +22,25 @@ from channels.routing import URLRouter
 from channels.auth import AuthMiddlewareStack
 from channels.security.websocket import OriginValidator
 import streamer.routing
+from . import settings
+
+allowed_hosts = [
+    "anime.dmkt-sp.jp",
+    "http://anime.dmkt-sp.jp:80",
+    "https://anime.dmkt-sp.jp",
+    "https://anime.dmkt-sp.jp:443",
+]
+
+if settings.DEBUG:
+    allowed_hosts += ["*"]
+
 
 application = ProtocolTypeRouter(
     {
         "http": django_asgi_app,
         "websocket": OriginValidator(
-            AuthMiddlewareStack(
-                URLRouter(streamer.routing.websocket_urlpatterns)
-                ),
-         ["anime.dmkt-sp.jp", "http://anime.dmkt-sp.jp:80", "https://anime.dmkt-sp.jp","https://anime.dmkt-sp.jp:443"]
-         )
+            AuthMiddlewareStack(URLRouter(streamer.routing.websocket_urlpatterns)),
+            allowed_hosts,
+        ),
     }
 )
