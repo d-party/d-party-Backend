@@ -10,7 +10,7 @@ from d_party import asgi
 
 
 @pytest.mark.asyncio
-class TestAnimePartyConsumer(TestCase):
+class TestAnimePartyConsumer(TransactionTestCase):
     def setUp(self):
         self.anime_room1 = AnimeRoomFactory(num_people=1)
         self.anime_room2 = AnimeRoomFactory()
