@@ -19,7 +19,6 @@ class TestAnimePartyConsumer(TestCase):
 
     @pytest.mark.django_db
     @pytest.mark.asyncio
-    @pytest.mark.with_async
     async def test_anime_party_consumer_create_ok(self):
         """AnimeConsumerのcreate actionが正しく動作することを確認するテスト"""
         communicator = WebsocketCommunicator(asgi.application, "/anime-store/party/")
@@ -44,7 +43,6 @@ class TestAnimePartyConsumer(TestCase):
 
     @pytest.mark.django_db
     @pytest.mark.asyncio
-    @pytest.mark.with_async
     async def test_anime_party_consumer_join_ok(self):
         """AnimeConsumerのjoin actionが正しく動作することを確認するテスト"""
         communicator = WebsocketCommunicator(asgi.application, "/anime-store/party/")
