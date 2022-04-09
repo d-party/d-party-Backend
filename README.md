@@ -50,3 +50,11 @@ settings.py で`debug = True`においてコンテナを起動させた場合に
 ```
 docker-compose exec django poetry run pytest --cov
 ```
+
+
+### その他
+
+開発に必要な情報は出来る限り、[wiki](https://github.com/d-party/d-party-Backend/wiki)に集約しています。
+適宜ご参照ください。
+
+また、質問事項などがありましたら、[ディスカッション](https://github.com/d-party/d-party-Backend/discussions)からご連絡ください。
