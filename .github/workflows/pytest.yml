@@ -18,15 +18,16 @@ jobs:
       - name: run docker-compose
         run: |
           docker-compose up -d
+          docker-compose exec django bash
       - name: init containers
         run: |
-          docker-compose exec -T django poetry run python manage.py makemigrations
-          docker-compose exec -T django poetry run python manage.py makemigrations streamer
-          docker-compose exec -T django poetry run python manage.py migrate
-          docker-compose exec -T django poetry run python manage.py collectstatic --noinput
+          poetry run python manage.py makemigrations
+          django poetry run python manage.py makemigrations streamer
+          django poetry run python manage.py migrate
+          django poetry run python manage.py collectstatic --noinput
       - name: run pytest
         run: |
-          docker-compose exec -T django poetry run pytest --cov --cov-report=xml
+          poetry run pytest --cov --cov-report=xml
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
