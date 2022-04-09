@@ -10,9 +10,9 @@ from d_party import asgi
 
 
 @pytest.mark.asyncio
-class TestAnimePartyConsumer(ChannelsLiveServerTestCase):
+class TestAnimePartyConsumer(TransactionTestCase):
     def setUp(self):
-        self.anime_room1 = AnimeRoomFactory(num_people=1)
+        self.anime_room1 = AnimeRoomFactory()
         self.anime_room2 = AnimeRoomFactory()
         self.anime_user1 = AnimeUserFactory(room_id=self.anime_room1, is_host=True)
         self.anime_user2 = AnimeUserFactory(room_id=self.anime_room1, is_host=False)
@@ -86,6 +86,7 @@ class TestAnimePartyConsumer(ChannelsLiveServerTestCase):
         response = await communicator.receive_json_from()
         assert response["action"] == "server_message"
         assert response["message"] == "failed_join"
+        await communicator.disconnect()
 
     @pytest.mark.django_db
     @pytest.mark.asyncio
@@ -143,6 +144,7 @@ class TestAnimePartyConsumer(ChannelsLiveServerTestCase):
         assert response["action"] == "video_operation"
         assert response["user"]["user_name"] == user_name2
         assert response["room_id"] == join_room_id
+        await communicator1.disconnect()
 
     @database_sync_to_async
     def anime_user_exist(self, user_id):

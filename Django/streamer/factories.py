@@ -8,7 +8,7 @@ class AnimeRoomFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = AnimeRoom
 
-    num_people = factory.fuzzy.FuzzyInteger(0, 10)
+    num_people = factory.fuzzy.FuzzyInteger(5, 10)
     sum_people = factory.fuzzy.FuzzyInteger(10, 20)
     part_id = "123456"
     updated_at = factory.Faker("date")
