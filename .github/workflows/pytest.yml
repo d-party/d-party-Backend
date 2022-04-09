@@ -18,9 +18,9 @@ jobs:
       - name: run docker-compose
         run: |
           docker-compose up -d
-          docker-compose exec -T django bash
       - name: init containers
         run: |
+          docker exec -it Django bash
           poetry run python manage.py makemigrations
           poetry run python manage.py makemigrations streamer
           poetry run python manage.py migrate
