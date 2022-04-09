@@ -58,3 +58,23 @@ docker-compose exec django poetry run pytest --cov
 適宜ご参照ください。
 
 また、質問事項などがありましたら、[ディスカッション](https://github.com/d-party/d-party-Backend/discussions)からご連絡ください。
+
+
+## 関連リンク
+
+### リリース
+
+- [d-party.net](https://d-party.net/)
+
+### 拡張機能
+
+#### ウェブストア
+
+- [d-party - Chrome ウェブストア](https://chrome.google.com/webstore/detail/d-party/ibmlcfpijglpfbfgaleaeooebgdgcbpc)
+
+
+#### リポジトリ
+
+- [d-party/d-party-Chrome-Extensions](https://github.com/d-party/d-party-Chrome-Extensions)
+
+
