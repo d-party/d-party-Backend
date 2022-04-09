@@ -31,7 +31,7 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./Django/.coverage.xml
+          file: ./Django/coverage.xml
           env_vars: OS,PYTHON
           name: codecov-umbrella
           fail_ci_if_error: true
