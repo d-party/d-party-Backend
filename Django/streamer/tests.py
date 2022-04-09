@@ -6,9 +6,11 @@ from channels.db import database_sync_to_async
 import pytest
 from .factories import AnimeRoomFactory, AnimeUserFactory
 from .models import AnimeRoom, AnimeUser
+from .consumers import AnimePartyConsumer
 from d_party import asgi
 
 
+@pytest.mark.django_db(transaction=True)
 @pytest.mark.asyncio
 class TestAnimePartyConsumer(TransactionTestCase):
     def setUp(self):
@@ -17,11 +19,13 @@ class TestAnimePartyConsumer(TransactionTestCase):
         self.anime_user1 = AnimeUserFactory(room_id=self.anime_room1, is_host=True)
         self.anime_user2 = AnimeUserFactory(room_id=self.anime_room1, is_host=False)
 
-    @pytest.mark.django_db
+    @pytest.mark.django_db(transaction=True)
     @pytest.mark.asyncio
     async def test_anime_party_consumer_create_ok(self):
         """AnimeConsumerのcreate actionが正しく動作することを確認するテスト"""
-        communicator = WebsocketCommunicator(asgi.application, "/anime-store/party/")
+        communicator = WebsocketCommunicator(
+            AnimePartyConsumer.as_asgi(), "/anime-store/party/"
+        )
         connected, subprotocol = await communicator.connect()
         assert connected
         user_name1 = "user_name1"
@@ -42,11 +46,13 @@ class TestAnimePartyConsumer(TransactionTestCase):
         assert self.anime_room_exist(response["room_id"])
         await communicator.disconnect()
 
-    @pytest.mark.django_db
+    @pytest.mark.django_db(transaction=True)
     @pytest.mark.asyncio
     async def test_anime_party_consumer_join_ok(self):
         """AnimeConsumerのjoin actionが正しく動作することを確認するテスト"""
-        communicator = WebsocketCommunicator(asgi.application, "/anime-store/party/")
+        communicator = WebsocketCommunicator(
+            AnimePartyConsumer.as_asgi(), "/anime-store/party/"
+        )
         connected, subprotocol = await communicator.connect()
         assert connected
         room_id = str(self.anime_room1.room_id)
@@ -66,11 +72,13 @@ class TestAnimePartyConsumer(TransactionTestCase):
         assert self.anime_user_exist(response["user"]["user_id"])
         await communicator.disconnect()
 
-    @pytest.mark.django_db
+    @pytest.mark.django_db(transaction=True)
     @pytest.mark.asyncio
     async def test_anime_party_consumer_join_ng(self):
         """AnimeConsumerのjoin actionが正しく動作することを確認するテスト"""
-        communicator = WebsocketCommunicator(asgi.application, "/anime-store/party/")
+        communicator = WebsocketCommunicator(
+            AnimePartyConsumer.as_asgi(), "/anime-store/party/"
+        )
         connected, subprotocol = await communicator.connect()
         assert connected
         user_name = "user_name"
@@ -88,11 +96,13 @@ class TestAnimePartyConsumer(TransactionTestCase):
         assert response["message"] == "failed_join"
         await communicator.disconnect()
 
-    @pytest.mark.django_db
+    @pytest.mark.django_db(transaction=True)
     @pytest.mark.asyncio
     async def test_anime_party_consumer_video_action(self):
         """AnimeConsumerのcreate actionが正しく動作することを確認するテスト"""
-        communicator1 = WebsocketCommunicator(asgi.application, "/anime-store/party/")
+        communicator1 = WebsocketCommunicator(
+            AnimePartyConsumer.as_asgi(), "/anime-store/party/"
+        )
         await communicator1.connect()
         user_name1 = "user_name1"
         await communicator1.send_json_to(
@@ -107,7 +117,9 @@ class TestAnimePartyConsumer(TransactionTestCase):
         join_room_id = response["room_id"]
         create_user = response["user"]
         """AnimeConsumerのcreate actionが正しく動作することを確認するテスト"""
-        communicator2 = WebsocketCommunicator(asgi.application, "/anime-store/party/")
+        communicator2 = WebsocketCommunicator(
+            AnimePartyConsumer.as_asgi(), "/anime-store/party/"
+        )
         await communicator2.connect()
         user_name2 = "user_name2"
         await communicator2.send_json_to(
