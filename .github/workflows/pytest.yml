@@ -26,7 +26,7 @@ jobs:
           docker-compose exec -T django poetry run python manage.py collectstatic --noinput
       - name: run pytest
         run: |
-          docker-compose exec -T django poetry run pytest --cov-report=xml
+          docker-compose exec -T django poetry run pytest --cov --cov-report=xml
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
