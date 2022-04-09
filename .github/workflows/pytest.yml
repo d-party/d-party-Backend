@@ -22,9 +22,9 @@ jobs:
       - name: init containers
         run: |
           poetry run python manage.py makemigrations
-          django poetry run python manage.py makemigrations streamer
-          django poetry run python manage.py migrate
-          django poetry run python manage.py collectstatic --noinput
+          poetry run python manage.py makemigrations streamer
+          poetry run python manage.py migrate
+          poetry run python manage.py collectstatic --noinput
       - name: run pytest
         run: |
           poetry run pytest --cov --cov-report=xml
