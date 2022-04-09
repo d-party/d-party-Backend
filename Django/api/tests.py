@@ -1,6 +1,4 @@
 import os
-
-from xmlrpc.client import boolean
 from rest_framework import status
 from rest_framework.test import APITestCase, APIClient, APIRequestFactory
 import pytest
@@ -21,7 +19,7 @@ class TestVersionCheckAPI(APITestCase):
         response = self.client.get(self.endpoint, get_params)
         assert response.status_code == status.HTTP_200_OK
         assert response.data["is_possible"]
-        assert type(response.data["is_possible"]) == boolean
+        assert type(response.data["is_possible"]) == bool
 
     @pytest.mark.django_db
     def test_version_check_possible_edgecase_ok_200(self):
@@ -35,7 +33,7 @@ class TestVersionCheckAPI(APITestCase):
         response = self.client.get(self.endpoint, get_params)
         assert response.status_code == status.HTTP_200_OK
         assert response.data["is_possible"]
-        assert type(response.data["is_possible"]) == boolean
+        assert type(response.data["is_possible"]) == bool
 
     @pytest.mark.django_db
     def test_version_check_impossible_ok_200(self):
@@ -47,7 +45,7 @@ class TestVersionCheckAPI(APITestCase):
         response = self.client.get(self.endpoint, get_params)
         assert response.status_code == status.HTTP_200_OK
         assert not response.data["is_possible"]
-        assert type(response.data["is_possible"]) == boolean
+        assert type(response.data["is_possible"]) == bool
 
     @pytest.mark.django_db
     def test_version_check_ng_406(self):
