@@ -30,11 +30,6 @@ class UsageView(TemplateView):
 class AnimeRoomLobby(TemplateView):
     template_name = "lobby_redirect.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "Anime Lobby"
-        return context
-
     def get(self, request, **kwargs):
         base_url = "https://anime.dmkt-sp.jp/animestore/sc_d_pc?"
         room_id = self.kwargs["room_id"]
@@ -53,6 +48,7 @@ class AnimeRoomLobby(TemplateView):
         )
         url = base_url + url_param
         context = {
+            "title": "Lobby",
             "redirect_url": str(url),
         }
         return self.render_to_response(context)
