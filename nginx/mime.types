@@ -12,6 +12,7 @@ types {
   image/x-icon                          ico;
   image/x-jng                           jng;
   image/vnd.wap.wbmp                    wbmp;
+  image/svg+xml                         svg svgz;
   application/java-archive              jar war ear;
   application/mac-binhex40              hqx;
   application/pdf                       pdf;
