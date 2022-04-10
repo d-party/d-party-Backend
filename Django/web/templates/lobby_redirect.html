@@ -1,28 +1,39 @@
-<!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta property="og:title" content="dアニメストアで一緒にアニメを視聴しよう！ | d-party">
-        <meta property="og:site_name" content="d-party" />
-        <meta property="og:type" content="article" />
-        <meta property="og:locale" content="ja_JP">
-        <meta class="chrome_extension_field"></meta>
-        {% load static %}
-    </head>
-    <body>
-        <script type="text/javascript">
-        window.addEventListener("load", main, false);
-        function main(e) {
-            window.setTimeout(function () {
-                if(document.getElementsByClassName("chrome_extension_field")[0].innerText==="true"){
-                    window.location.href="{{redirect_url|safe}}";
-                }else if(document.getElementsByClassName("chrome_extension_field")[0].innerText==="false"){
-                    console.log("バージョンが対応していません");
-                }else{
-                    console.log("拡張機能がインストールされていません");
-                }
-            }, 1000);
-            }
-        </script>
-    </body>
+{% extends "layout.html" %}
+{% block head %}        
+<meta property="og:title" content="dアニメストアで一緒にアニメを視聴しよう！ | d-party">
+<meta property="og:site_name" content="d-party" />
+<meta property="og:type" content="article" />
+<meta property="og:locale" content="ja_JP">
+<meta class="chrome_extension_field"></meta>
+{% endblock %}
+{% block content %}{% load static %}
+<div class="loader-wrap">
+	<div class="loader">Loading...</div>
+    <p>ルームに接続しています</p>
+</div>
 
-</html>
+<script type="text/javascript">
+window.addEventListener("load", main, false);
+function version_check(){
+    if (
+      document.getElementsByClassName("chrome_extension_field")[0].innerText ===
+      "true"
+    ) {
+      window.location.href = "{{redirect_url|safe}}";
+    } else if (
+      document.getElementsByClassName("chrome_extension_field")[0].innerText ===
+      "false"
+    ) {
+      console.log("拡張機能のバージョンが対応していません");
+    }
+}
+
+function main(e) {
+for (let step = 1; step < 10; step++) {
+    window.setTimeout(version_check, 1000*step);
+}
+/*10秒待ってダメなら、インストールされていないと判断*/
+  window.setTimeout(function(){console.log("拡張機能がインストールされていません");}, 10000);
+}
+</script>
+{% endblock %}
