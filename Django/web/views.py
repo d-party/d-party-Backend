@@ -48,6 +48,7 @@ class AnimeRoomLobby(TemplateView):
         )
         url = base_url + url_param
         context = {
+            "title": "Lobby",
             "redirect_url": str(url),
         }
         return self.render_to_response(context)
