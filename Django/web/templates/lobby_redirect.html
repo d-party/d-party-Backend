@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
-{% block head %}        
+{% block stylesheet %}{% load static %}
+<link rel="stylesheet" href="{% static "web/css/robby.css" %}" />
+{% endblock %}
+{% block head %}    
 <meta property="og:title" content="dアニメストアで一緒にアニメを視聴しよう！ | d-party">
 <meta property="og:site_name" content="d-party" />
 <meta property="og:type" content="article" />
@@ -12,7 +15,19 @@
     <p>ルームに接続しています</p>
 </div>
 
+<div class="redirect-shop update-shop">
+    <img src="{% static "web/img/robby/hand.svg" %}" width="125" height="125"/>
+    <p>拡張機能をアップデートしてください</p>
+    <p>3秒後にChrome ウェブストアにリダイレクトします</p>
+</div>
+<div class="redirect-shop install-shop">
+    <img src="{% static "web/img/robby/hand.svg" %}" width="125" height="125"/>
+    <p>拡張機能をインストールしてください</p>
+    <p>3秒後にChrome ウェブストアにリダイレクトします</p>
+</div>
+
 <script type="text/javascript">
+$(".redirect-shop").hide();
 window.addEventListener("load", main, false);
 function version_check(){
     if (
@@ -24,7 +39,16 @@ function version_check(){
       document.getElementsByClassName("chrome_extension_field")[0].innerText ===
       "false"
     ) {
-      console.log("拡張機能のバージョンが対応していません");
+        const element = document.querySelector('.loader-wrap p');
+        element.innerText="拡張機能のバージョンが対応していません"
+        window.setTimeout(function(){
+            $('.loader-wrap').fadeOut(500,function(){
+              $('.update-shop').fadeIn(500);
+              window.setTimeout(function(){
+                window.location.href = "https://chrome.google.com/webstore/detail/d-party/ibmlcfpijglpfbfgaleaeooebgdgcbpc?hl=ja";
+              },3000)
+            });
+        },2000);    
     }
 }
 
@@ -33,7 +57,18 @@ for (let step = 1; step < 10; step++) {
     window.setTimeout(version_check, 1000*step);
 }
 /*10秒待ってダメなら、インストールされていないと判断*/
-  window.setTimeout(function(){console.log("拡張機能がインストールされていません");}, 10000);
+  window.setTimeout(function(){        
+        const element = document.querySelector('.loader-wrap p');
+        element.innerText="拡張機能がインストールされていません"
+        window.setTimeout(function(){
+              $('.loader-wrap').fadeOut(500,function(){
+              $('.install-shop').fadeIn(500);
+              window.setTimeout(function(){
+                window.location.href = "https://chrome.google.com/webstore/detail/d-party/ibmlcfpijglpfbfgaleaeooebgdgcbpc?hl=ja";
+              },3000)
+            });
+        },2000);
+        }, 10000);
 }
 </script>
 {% endblock %}
