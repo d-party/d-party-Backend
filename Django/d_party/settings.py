@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "django_boost",
     "rest_framework",
+    "request",
     "streamer",
     "web",
     "api",
@@ -63,6 +64,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "request.middleware.RequestMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]

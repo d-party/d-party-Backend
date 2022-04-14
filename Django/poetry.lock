@@ -315,6 +315,18 @@ python-versions = ">=3.6.2"
 django = ">=2.2"
 
 [[package]]
+name = "django-request"
+version = "1.6.1"
+description = "django-request is a statistics module for django. It stores requests in a database for admins to see, it can also be used to get statistics on who is online etc."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+Django = ">=2.2"
+python-dateutil = "*"
+
+[[package]]
 name = "djangochannelsrestframework"
 version = "1.0.0"
 description = "RESTful API for WebSockets using django channels."
@@ -958,7 +970,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "e4bc6ae06cf9847e610d01c9bcbd2d572816e3b539e72a19e47e850f62a6faea"
+content-hash = "3519a25b6368358f950d2d6c1571cd8f4590a410d07a9f715e813af49bd0bb62"
 
 [metadata.files]
 aioredis = [
@@ -1177,6 +1189,10 @@ django-filter = [
 django-jazzmin = [
     {file = "django-jazzmin-2.5.0.tar.gz", hash = "sha256:2ee5ea548e9d5d6cf6495025d006b063ecae84702304eb90c9c5ef37ba99078a"},
     {file = "django_jazzmin-2.5.0-py3-none-any.whl", hash = "sha256:6b9f9951eee41f60793a0d2f6f3d57213bd5605ddda7a106acb2bcdec4ef124e"},
+]
+django-request = [
+    {file = "django-request-1.6.1.tar.gz", hash = "sha256:2464a77cdd791fe76162eea2f844c4cba7cb6fcdda9a5d3d86c9d4b6d9162330"},
+    {file = "django_request-1.6.1-py3-none-any.whl", hash = "sha256:be85d78631c2990f07f9170588b95036db446f0a07a0865487133435c797d2f9"},
 ]
 djangochannelsrestframework = [
     {file = "djangochannelsrestframework-1.0.0-py2.py3-none-any.whl", hash = "sha256:63ac99a95a9024143ecf992f434f3025cac10baeaa4203b46eff2c85fcc58a09"},
