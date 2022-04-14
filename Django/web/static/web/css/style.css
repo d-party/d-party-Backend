@@ -1,18 +1,35 @@
 html {
   height: 100%;
 }
+
 body {
   height: 100%;
   font-family: "Arial", "メイリオ";
   background-color: #222222;
 }
+
+#main {
+  max-width: 100%;
+  height: 80%;
+}
+
+.chart_content {
+  width: 800px;
+  max-width: 80%;
+  height: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .section {
   max-width: 100%;
   height: 100%;
 }
+
 .carousel {
   margin-top: 50px;
 }
+
 .carousel-image {
   width: 70%;
   object-fit: cover;

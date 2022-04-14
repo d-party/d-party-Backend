@@ -1,5 +1,10 @@
 import os
+import datetime
+import pandas as pd
+
+from streamer.models import AnimeUser, AnimeRoom
 from django.shortcuts import render
+from django.db.models import Count
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -46,3 +51,91 @@ class ChromeExtensionVersionCheckAPI(APIView):
                 {"message": "extension-versionパラメータが存在しません"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+
+
+class ActiveUserPerDayAPI(APIView):
+    """アクティブユーザー数を返す
+    アクティブユーザー数とは、ルーム内に存在していたユーザーである
+    """
+
+    def get(self, request, format=None) -> dict:
+        """アクティブユーザー数のdictを返す
+
+        Args:
+            request ([type]): [description]
+            format ([type], optional): [description]. Defaults to None.
+
+        Returns:
+            [Response]: {"description": "理由を記述"}
+
+        """
+        Active_User_Per_Day_Set = (
+            AnimeUser.objects.extra(select={"day": "date( created_at )"})
+            .values("day")
+            .annotate(count=Count("created_at"))
+        )
+        Active_User_Per_Day = list(Active_User_Per_Day_Set)
+        if (
+            len(Active_User_Per_Day) == 0
+            or Active_User_Per_Day[-1]["day"] != datetime.date.today()
+        ):
+            Active_User_Per_Day.append({"day": datetime.date.today(), "count": 0})
+
+        Active_User_Per_Day_Pd = (
+            pd.DataFrame(Active_User_Per_Day)
+            .set_index("day")
+            .asfreq("1D", fill_value=0)
+        )
+
+        Active_User_Per_Day_Pd["day"] = Active_User_Per_Day_Pd.index.map(
+            lambda x: x.to_pydatetime().date()
+        )
+        return Response(
+            {
+                "data": Active_User_Per_Day_Pd.to_dict(orient="records"),
+            }
+        )
+
+
+class ActiveRoomPerDayAPI(APIView):
+    """アクティブユーザー数を返す
+    アクティブユーザー数とは、ルーム内に存在していたユーザーである
+    """
+
+    def get(self, request, format=None) -> dict:
+        """アクティブユーザー数のdictを返す
+
+        Args:
+            request ([type]): [description]
+            format ([type], optional): [description]. Defaults to None.
+
+        Returns:
+            [Response]: {"description": "理由を記述"}
+
+        """
+        Active_Room_Per_Day_Set = (
+            AnimeRoom.objects.extra(select={"day": "date( created_at )"})
+            .values("day")
+            .annotate(count=Count("created_at"))
+        )
+        Active_User_Room_Day = list(Active_Room_Per_Day_Set)
+        if (
+            len(Active_User_Room_Day) == 0
+            or Active_User_Room_Day[-1]["day"] != datetime.date.today()
+        ):
+            Active_User_Room_Day.append({"day": datetime.date.today(), "count": 0})
+
+        Active_Room_Per_Day_Pd = (
+            pd.DataFrame(Active_User_Room_Day)
+            .set_index("day")
+            .asfreq("1D", fill_value=0)
+        )
+
+        Active_Room_Per_Day_Pd["day"] = Active_Room_Per_Day_Pd.index.map(
+            lambda x: x.to_pydatetime().date()
+        )
+        return Response(
+            {
+                "data": Active_Room_Per_Day_Pd.to_dict(orient="records"),
+            }
+        )

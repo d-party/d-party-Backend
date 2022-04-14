@@ -7,4 +7,12 @@ urlpatterns = [
         "v1/chrome-extension/version-check",
         views.ChromeExtensionVersionCheckAPI.as_view(),
     ),
+    path(
+        "v1/statistics/active-user-per-day",
+        views.ActiveUserPerDayAPI.as_view(),
+    ),
+    path(
+        "v1/statistics/active-room-per-day",
+        views.ActiveRoomPerDayAPI.as_view(),
+    ),
 ]
