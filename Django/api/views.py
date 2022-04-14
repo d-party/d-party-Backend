@@ -2,7 +2,7 @@ import os
 import datetime
 import pandas as pd
 
-from streamer.models import AnimeUser, AnimeRoom
+from streamer.models import AnimeUser, AnimeRoom, AnimeReaction, ReactionType
 from django.shortcuts import render
 from django.db.models import Count
 from rest_framework.views import APIView
@@ -17,7 +17,7 @@ class ChromeExtensionVersionCheckAPI(APIView):
     現在のバックエンドと問題なくメッセージ可能なバージョンか否かを通知する
     """
 
-    def get(self, request, format=None):
+    def get(self, request, format=None) -> Response:
         """chromeのバージョンをgetのパラメータとして受け取り、
         バックエンドが問題なく処理できるバージョンであるかを確認する
 
@@ -58,7 +58,7 @@ class ActiveUserPerDayAPI(APIView):
     アクティブユーザー数とは、ルーム内に存在していたユーザーである
     """
 
-    def get(self, request, format=None) -> dict:
+    def get(self, request, format=None) -> Response:
         """アクティブユーザー数のdictを返す
 
         Args:
@@ -98,12 +98,12 @@ class ActiveUserPerDayAPI(APIView):
 
 
 class ActiveRoomPerDayAPI(APIView):
-    """アクティブユーザー数を返す
-    アクティブユーザー数とは、ルーム内に存在していたユーザーである
+    """アクティブルーム数を返す
+    アクティブルーム数とは、ユーザーによって作られたルームの合計である
     """
 
-    def get(self, request, format=None) -> dict:
-        """アクティブユーザー数のdictを返す
+    def get(self, request, format=None) -> Response:
+        """アクティブルーム数のdictを返す
 
         Args:
             request ([type]): [description]
@@ -139,3 +139,20 @@ class ActiveRoomPerDayAPI(APIView):
                 "data": Active_Room_Per_Day_Pd.to_dict(orient="records"),
             }
         )
+
+
+class AnimeRoomReactionCountAPI(APIView):
+    """アニメルーム内のリアクションのカウント結果を返すAPI"""
+
+    def get(self, request, format=None) -> Response:
+        response = []
+        for x in ReactionType.choices:
+            response.append(
+                {
+                    "count": AnimeReaction.objects.filter(reaction_type=x[0])
+                    .all()
+                    .count(),
+                    "reaction_type": x[1],
+                }
+            )
+        return Response({"data": response})

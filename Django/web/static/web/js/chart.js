@@ -60,3 +60,34 @@ axios.get('/api/v1/statistics/active-room-per-day')
     
     myChart.setOption(option);
 })
+
+axios.get('/api/v1/statistics/anime-reaction-count')
+  .then(function (response) {
+    let xdata_reaction=[];
+    let ydata_reaction=[];
+    response.data.data.forEach(element => {xdata_reaction.push(element.reaction_type);ydata_reaction.push(element.count);});
+    var chartDom = document.getElementById('reaction_room');
+    var myChart = echarts.init(chartDom,"dark");
+    var option;
+    
+    option = {
+        title: {
+            text: 'リアクションの総数'
+          },
+      xAxis: {
+        type: 'category',
+        data: xdata_reaction
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+        {
+          data: ydata_reaction,
+          type: 'bar'
+        }
+      ]
+    };
+    
+    myChart.setOption(option);
+})

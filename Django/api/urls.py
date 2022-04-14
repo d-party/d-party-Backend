@@ -15,4 +15,8 @@ urlpatterns = [
         "v1/statistics/active-room-per-day",
         views.ActiveRoomPerDayAPI.as_view(),
     ),
+    path(
+        "v1/statistics/anime-reaction-count",
+        views.AnimeRoomReactionCountAPI.as_view(),
+    ),
 ]
