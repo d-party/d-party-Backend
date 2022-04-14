@@ -26,7 +26,22 @@ class AnimeUser(LogicalDeletionMixin):
         return self.user_name
 
 
-class AnimeRommHistory(models.Model):
+class ReactionType(models.TextChoices):
+    cry = "C", "cry"
+    middle_finger = "MF", "middle_finger"
+    smile = "S", "smile"
+    thumbs_up = "TU", "thumbs_up"
+    fav = "F", "fav"
+
+
+class AnimeReaction(LogicalDeletionMixin):
+    reaction_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    room_id = models.ForeignKey(AnimeRoom, on_delete=models.CASCADE)
+    reaction_type = models.CharField(max_length=3, choices=ReactionType.choices)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class AnimeRoomHistory(models.Model):
     user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     room_id = models.ForeignKey(AnimeRoom, on_delete=models.CASCADE)
     type = models.CharField(max_length=20)
