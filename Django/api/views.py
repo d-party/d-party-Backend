@@ -1,7 +1,13 @@
 import os
+import datetime
+import pandas as pd
+
+from streamer.models import AnimeUser, AnimeRoom, AnimeReaction, ReactionType
 from django.shortcuts import render
+from django.db.models import Count
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAdminUser, AllowAny
 
 from rest_framework import status
 from distutils.version import LooseVersion, StrictVersion
@@ -12,7 +18,9 @@ class ChromeExtensionVersionCheckAPI(APIView):
     現在のバックエンドと問題なくメッセージ可能なバージョンか否かを通知する
     """
 
-    def get(self, request, format=None):
+    permission_classes = [AllowAny]
+
+    def get(self, request, format=None) -> Response:
         """chromeのバージョンをgetのパラメータとして受け取り、
         バックエンドが問題なく処理できるバージョンであるかを確認する
 
@@ -46,3 +54,159 @@ class ChromeExtensionVersionCheckAPI(APIView):
                 {"message": "extension-versionパラメータが存在しません"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+
+
+class AnimeActiveUserPerDayAPI(APIView):
+    """アクティブユーザー数を返す
+    アクティブユーザー数とは、ルーム内に存在していたユーザーである
+    """
+
+    permission_classes = [IsAdminUser]
+
+    def get(self, request, format=None) -> Response:
+        """アクティブユーザー数のdictを返す
+
+        Args:
+            request ([type]): [description]
+            format ([type], optional): [description]. Defaults to None.
+
+        Returns:
+            [Response]: {"description": "理由を記述"}
+
+        """
+        Active_User_Per_Day_Set = (
+            AnimeUser.objects.extra(select={"day": "date( created_at )"})
+            .values("day")
+            .annotate(count=Count("created_at"))
+        )
+        Active_User_Per_Day = list(Active_User_Per_Day_Set)
+        if (
+            len(Active_User_Per_Day) == 0
+            or Active_User_Per_Day[-1]["day"] != datetime.date.today()
+        ):
+            Active_User_Per_Day.append({"day": datetime.date.today(), "count": 0})
+
+        Active_User_Per_Day_Pd = (
+            pd.DataFrame(Active_User_Per_Day)
+            .set_index("day")
+            .asfreq("1D", fill_value=0)
+        )
+
+        Active_User_Per_Day_Pd["day"] = Active_User_Per_Day_Pd.index.map(
+            lambda x: x.to_pydatetime().date()
+        )
+        return Response(
+            {
+                "data": Active_User_Per_Day_Pd.to_dict(orient="records"),
+            }
+        )
+
+
+class AnimeActiveRoomPerDayAPI(APIView):
+    """アクティブルーム数を返す
+    アクティブルーム数とは、ユーザーによって作られたルームの合計である
+    """
+
+    permission_classes = [IsAdminUser]
+
+    def get(self, request, format=None) -> Response:
+        """アクティブルーム数のdictを返す
+
+        Args:
+            request ([type]): [description]
+            format ([type], optional): [description]. Defaults to None.
+
+        Returns:
+            [Response]: {"description": "理由を記述"}
+
+        """
+        Active_Room_Per_Day_Set = (
+            AnimeRoom.objects.extra(select={"day": "date( created_at )"})
+            .values("day")
+            .annotate(count=Count("created_at"))
+        )
+        Active_User_Room_Day = list(Active_Room_Per_Day_Set)
+        if (
+            len(Active_User_Room_Day) == 0
+            or Active_User_Room_Day[-1]["day"] != datetime.date.today()
+        ):
+            Active_User_Room_Day.append({"day": datetime.date.today(), "count": 0})
+
+        Active_Room_Per_Day_Pd = (
+            pd.DataFrame(Active_User_Room_Day)
+            .set_index("day")
+            .asfreq("1D", fill_value=0)
+        )
+
+        Active_Room_Per_Day_Pd["day"] = Active_Room_Per_Day_Pd.index.map(
+            lambda x: x.to_pydatetime().date()
+        )
+        return Response(
+            {
+                "data": Active_Room_Per_Day_Pd.to_dict(orient="records"),
+            }
+        )
+
+
+class AnimeRoomReactionCountAPI(APIView):
+    """アニメルーム内のリアクションのカウント結果を返すAPI"""
+
+    permission_classes = [IsAdminUser]
+
+    def get(self, request, format=None) -> Response:
+        response = []
+        for x in ReactionType.choices:
+            response.append(
+                {
+                    "count": AnimeReaction.objects.filter(reaction_type=x[0])
+                    .all()
+                    .count(),
+                    "reaction_type": x[1],
+                }
+            )
+        return Response({"data": response})
+
+
+class AnimeRoomReactionAllCountAPI(APIView):
+    """アニメルーム内のリアクションの累計カウント結果を返すAPI"""
+
+    permission_classes = [IsAdminUser]
+
+    def get(self, request, format=None) -> Response:
+        return Response({"data": {"count": AnimeReaction.objects.all().count()}})
+
+
+class AnimeUserAllCountAPI(APIView):
+    """アニメルーム内のユーザー数の累計カウント結果を返すAPI"""
+
+    permission_classes = [IsAdminUser]
+
+    def get(self, request, format=None) -> Response:
+        return Response({"data": {"count": AnimeUser.objects.all().count()}})
+
+
+class AnimeRoomAllCountAPI(APIView):
+    """アニメルーム数の累計カウント結果を返すAPI"""
+
+    permission_classes = [IsAdminUser]
+
+    def get(self, request, format=None) -> Response:
+        return Response({"data": {"count": AnimeRoom.objects.all().count()}})
+
+
+class AnimeUserAliveCountAPI(APIView):
+    """現在接続中のアニメルーム内のユーザー数のカウント結果を返すAPI"""
+
+    permission_classes = [IsAdminUser]
+
+    def get(self, request, format=None) -> Response:
+        return Response({"data": {"count": AnimeUser.objects.alive().count()}})
+
+
+class AnimeRoomAliveCountAPI(APIView):
+    """現在接続中のアニメルーム数の現在のカウント結果を返すAPI"""
+
+    permission_classes = [IsAdminUser]
+
+    def get(self, request, format=None) -> Response:
+        return Response({"data": {"count": AnimeRoom.objects.alive().count()}})

@@ -1,12 +1,12 @@
-import os
 import urllib.parse
 from django.shortcuts import render
 from django.urls import is_valid_path
 from django.views.generic import TemplateView, RedirectView
 from streamer.models import AnimeRoom
 from django.shortcuts import get_object_or_404
-from uuid import UUID
 from django.http import Http404
+
+from streamer.models import AnimeRoom, AnimeUser
 
 
 class IndexView(TemplateView):
@@ -24,6 +24,15 @@ class UsageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Usage"
+        return context
+
+
+class AdminChartsView(TemplateView):
+    template_name = "chart.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Chart"
         return context
 
 
