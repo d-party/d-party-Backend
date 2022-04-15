@@ -173,6 +173,11 @@ JAZZMIN_SETTINGS = {
             "url": "https://github.com/d-Party",
             "new_window": True,
         },
+        {
+            "name": "Chart",
+            "url": "/admin/chart",
+            "new_window": True,
+        },
         {"model": "auth.User"},
         {"model": "streamer.AnimeRoom"},
         {"model": "streamer.TVRoom"},

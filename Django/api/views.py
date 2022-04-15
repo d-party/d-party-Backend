@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.db.models import Count
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAdminUser, AllowAny
 
 from rest_framework import status
 from distutils.version import LooseVersion, StrictVersion
@@ -16,6 +17,8 @@ class ChromeExtensionVersionCheckAPI(APIView):
     """chromeの拡張機能のバージョンをチェックし、
     現在のバックエンドと問題なくメッセージ可能なバージョンか否かを通知する
     """
+
+    permission_classes = [AllowAny]
 
     def get(self, request, format=None) -> Response:
         """chromeのバージョンをgetのパラメータとして受け取り、
@@ -57,6 +60,8 @@ class AnimeActiveUserPerDayAPI(APIView):
     """アクティブユーザー数を返す
     アクティブユーザー数とは、ルーム内に存在していたユーザーである
     """
+
+    permission_classes = [IsAdminUser]
 
     def get(self, request, format=None) -> Response:
         """アクティブユーザー数のdictを返す
@@ -102,6 +107,8 @@ class AnimeActiveRoomPerDayAPI(APIView):
     アクティブルーム数とは、ユーザーによって作られたルームの合計である
     """
 
+    permission_classes = [IsAdminUser]
+
     def get(self, request, format=None) -> Response:
         """アクティブルーム数のdictを返す
 
@@ -144,6 +151,8 @@ class AnimeActiveRoomPerDayAPI(APIView):
 class AnimeRoomReactionCountAPI(APIView):
     """アニメルーム内のリアクションのカウント結果を返すAPI"""
 
+    permission_classes = [IsAdminUser]
+
     def get(self, request, format=None) -> Response:
         response = []
         for x in ReactionType.choices:
@@ -161,12 +170,16 @@ class AnimeRoomReactionCountAPI(APIView):
 class AnimeRoomReactionAllCountAPI(APIView):
     """アニメルーム内のリアクションの累計カウント結果を返すAPI"""
 
+    permission_classes = [IsAdminUser]
+
     def get(self, request, format=None) -> Response:
         return Response({"data": {"count": AnimeReaction.objects.all().count()}})
 
 
 class AnimeUserAllCountAPI(APIView):
     """アニメルーム内のユーザー数の累計カウント結果を返すAPI"""
+
+    permission_classes = [IsAdminUser]
 
     def get(self, request, format=None) -> Response:
         return Response({"data": {"count": AnimeUser.objects.all().count()}})
@@ -175,6 +188,8 @@ class AnimeUserAllCountAPI(APIView):
 class AnimeRoomAllCountAPI(APIView):
     """アニメルーム数の累計カウント結果を返すAPI"""
 
+    permission_classes = [IsAdminUser]
+
     def get(self, request, format=None) -> Response:
         return Response({"data": {"count": AnimeRoom.objects.all().count()}})
 
@@ -182,12 +197,16 @@ class AnimeRoomAllCountAPI(APIView):
 class AnimeUserAliveCountAPI(APIView):
     """現在接続中のアニメルーム内のユーザー数のカウント結果を返すAPI"""
 
+    permission_classes = [IsAdminUser]
+
     def get(self, request, format=None) -> Response:
         return Response({"data": {"count": AnimeUser.objects.alive().count()}})
 
 
 class AnimeRoomAliveCountAPI(APIView):
     """現在接続中のアニメルーム数の現在のカウント結果を返すAPI"""
+
+    permission_classes = [IsAdminUser]
 
     def get(self, request, format=None) -> Response:
         return Response({"data": {"count": AnimeRoom.objects.alive().count()}})
