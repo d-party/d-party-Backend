@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "django_boost",
     "rest_framework",
+    "request",
     "streamer",
     "web",
     "api",
@@ -63,6 +64,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "request.middleware.RequestMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -171,6 +173,11 @@ JAZZMIN_SETTINGS = {
             "url": "https://github.com/d-Party",
             "new_window": True,
         },
+        {
+            "name": "Chart",
+            "url": "/admin/chart",
+            "new_window": True,
+        },
         {"model": "auth.User"},
         {"model": "streamer.AnimeRoom"},
         {"model": "streamer.TVRoom"},
@@ -239,6 +246,10 @@ JAZZMIN_SETTINGS = {
         "auth.group": "vertical_tabs",
     },
     "language_chooser": False,
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "darkly",
 }
 
 

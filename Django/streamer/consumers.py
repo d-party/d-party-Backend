@@ -9,7 +9,7 @@ from channels.db import database_sync_to_async
 from djangochannelsrestframework.generics import GenericAsyncAPIConsumer
 from djangochannelsrestframework.decorators import action
 
-from .models import AnimeRoom, AnimeUser
+from .models import AnimeRoom, AnimeUser, AnimeReaction, ReactionType
 from .format import (
     Create,
     GroupSend,
@@ -243,6 +243,7 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
             str(self.anime_room.room_id),
             json.loads(json.dumps(response_data.dict())),
         )
+        await self.database_create_reaction(reaction_type=reaction_type)
 
     @action()
     async def user_list(self, **kwargs):
@@ -456,3 +457,10 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
         ar = AnimeRoom.objects.get(room_id=self.anime_room.room_id)
         user_list = ar.inroom.alive().values("user_name", "user_id")
         return list(user_list)
+
+    @database_sync_to_async
+    def database_create_reaction(self, reaction_type):
+        """リアクションを保存する"""
+        return AnimeReaction.objects.create(
+            room_id=self.anime_room, reaction_type=ReactionType[reaction_type].value
+        )
