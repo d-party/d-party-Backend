@@ -11,15 +11,31 @@ axios.get('/api/v1/statistics/anime-store/active-user-per-day')
         title: {
             text: '1日ごとのユーザー数'
           },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
       xAxis: {
         type: 'category',
-        data: xdata_user
+        data: xdata_user,
+        axisTick: {
+          alignWithLabel: true
+        }
       },
       yAxis: {
         type: 'value'
       },
       series: [
         {
+          name:"ユーザー数",
           data: ydata_user,
           type: 'bar'
         }
@@ -43,15 +59,31 @@ axios.get('/api/v1/statistics/anime-store/active-room-per-day')
         title: {
             text: '1日ごとのルーム数'
           },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
       xAxis: {
         type: 'category',
-        data: xdata_room
+        data: xdata_room,
+        axisTick: {
+          alignWithLabel: true
+        }
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
       },
       series: [
         {
+          name:"ルーム数",
           data: ydata_room,
           type: 'bar'
         }
@@ -74,15 +106,31 @@ axios.get('/api/v1/statistics/anime-store/anime-reaction-count')
         title: {
             text: 'リアクションの総数'
           },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
       xAxis: {
         type: 'category',
-        data: xdata_reaction
+        data: xdata_reaction,
+        axisTick: {
+          alignWithLabel: true
+        }
       },
       yAxis: {
         type: 'value'
       },
       series: [
         {
+          name:"リアクション数",
           data: ydata_reaction,
           type: 'bar'
         }
