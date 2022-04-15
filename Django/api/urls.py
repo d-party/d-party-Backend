@@ -8,15 +8,35 @@ urlpatterns = [
         views.ChromeExtensionVersionCheckAPI.as_view(),
     ),
     path(
-        "v1/statistics/active-user-per-day",
-        views.ActiveUserPerDayAPI.as_view(),
+        "v1/statistics/anime-store/active-user-per-day",
+        views.AnimeActiveUserPerDayAPI.as_view(),
     ),
     path(
-        "v1/statistics/active-room-per-day",
-        views.ActiveRoomPerDayAPI.as_view(),
+        "v1/statistics/anime-store/active-room-per-day",
+        views.AnimeActiveRoomPerDayAPI.as_view(),
     ),
     path(
-        "v1/statistics/anime-reaction-count",
+        "v1/statistics/anime-store/anime-reaction-count",
         views.AnimeRoomReactionCountAPI.as_view(),
+    ),
+    path(
+        "v1/statistics/anime-store/anime-reaction-all-count",
+        views.AnimeRoomReactionAllCountAPI.as_view(),
+    ),
+    path(
+        "v1/statistics/anime-store/anime-room-all-count",
+        views.AnimeRoomAllCountAPI.as_view(),
+    ),
+    path(
+        "v1/statistics/anime-store/anime-user-all-count",
+        views.AnimeUserAllCountAPI.as_view(),
+    ),
+    path(
+        "v1/statistics/anime-store/anime-room-alive-count",
+        views.AnimeRoomAliveCountAPI.as_view(),
+    ),
+    path(
+        "v1/statistics/anime-store/anime-user-alive-count",
+        views.AnimeUserAliveCountAPI.as_view(),
     ),
 ]

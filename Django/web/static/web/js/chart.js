@@ -1,4 +1,4 @@
-axios.get('/api/v1/statistics/active-user-per-day')
+axios.get('/api/v1/statistics/anime-store/active-user-per-day')
   .then(function (response) {
     let xdata_user=[];
     let ydata_user=[];
@@ -30,7 +30,7 @@ axios.get('/api/v1/statistics/active-user-per-day')
 });
 
 
-axios.get('/api/v1/statistics/active-room-per-day')
+axios.get('/api/v1/statistics/anime-store/active-room-per-day')
   .then(function (response) {
     let xdata_room=[];
     let ydata_room=[];
@@ -61,7 +61,7 @@ axios.get('/api/v1/statistics/active-room-per-day')
     myChart.setOption(option);
 })
 
-axios.get('/api/v1/statistics/anime-reaction-count')
+axios.get('/api/v1/statistics/anime-store/anime-reaction-count')
   .then(function (response) {
     let xdata_reaction=[];
     let ydata_reaction=[];
@@ -91,3 +91,27 @@ axios.get('/api/v1/statistics/anime-reaction-count')
     
     myChart.setOption(option);
 })
+
+axios.get('/api/v1/statistics/anime-store/anime-user-alive-count')
+  .then(function (response) {
+    document.getElementById("alive-user").innerText=response.data.data.count;
+});
+axios.get('/api/v1/statistics/anime-store/anime-room-alive-count')
+  .then(function (response) {
+    document.getElementById("alive-room").innerText=response.data.data.count;
+});
+
+axios.get('/api/v1/statistics/anime-store/anime-user-all-count')
+  .then(function (response) {
+    document.getElementById("all-user").innerText=response.data.data.count;
+});
+
+axios.get('/api/v1/statistics/anime-store/anime-room-all-count')
+  .then(function (response) {
+    document.getElementById("all-room").innerText=response.data.data.count;
+});
+
+axios.get('/api/v1/statistics/anime-store/anime-reaction-all-count')
+  .then(function (response) {
+    document.getElementById("all-reaction").innerText=response.data.data.count;
+});

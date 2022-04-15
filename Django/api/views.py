@@ -53,7 +53,7 @@ class ChromeExtensionVersionCheckAPI(APIView):
             )
 
 
-class ActiveUserPerDayAPI(APIView):
+class AnimeActiveUserPerDayAPI(APIView):
     """アクティブユーザー数を返す
     アクティブユーザー数とは、ルーム内に存在していたユーザーである
     """
@@ -97,7 +97,7 @@ class ActiveUserPerDayAPI(APIView):
         )
 
 
-class ActiveRoomPerDayAPI(APIView):
+class AnimeActiveRoomPerDayAPI(APIView):
     """アクティブルーム数を返す
     アクティブルーム数とは、ユーザーによって作られたルームの合計である
     """
@@ -156,3 +156,38 @@ class AnimeRoomReactionCountAPI(APIView):
                 }
             )
         return Response({"data": response})
+
+
+class AnimeRoomReactionAllCountAPI(APIView):
+    """アニメルーム内のリアクションの累計カウント結果を返すAPI"""
+
+    def get(self, request, format=None) -> Response:
+        return Response({"data": {"count": AnimeReaction.objects.all().count()}})
+
+
+class AnimeUserAllCountAPI(APIView):
+    """アニメルーム内のユーザー数の累計カウント結果を返すAPI"""
+
+    def get(self, request, format=None) -> Response:
+        return Response({"data": {"count": AnimeUser.objects.all().count()}})
+
+
+class AnimeRoomAllCountAPI(APIView):
+    """アニメルーム数の累計カウント結果を返すAPI"""
+
+    def get(self, request, format=None) -> Response:
+        return Response({"data": {"count": AnimeRoom.objects.all().count()}})
+
+
+class AnimeUserAliveCountAPI(APIView):
+    """現在接続中のアニメルーム内のユーザー数のカウント結果を返すAPI"""
+
+    def get(self, request, format=None) -> Response:
+        return Response({"data": {"count": AnimeUser.objects.alive().count()}})
+
+
+class AnimeRoomAliveCountAPI(APIView):
+    """現在接続中のアニメルーム数の現在のカウント結果を返すAPI"""
+
+    def get(self, request, format=None) -> Response:
+        return Response({"data": {"count": AnimeRoom.objects.alive().count()}})
