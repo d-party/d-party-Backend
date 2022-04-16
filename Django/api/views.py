@@ -78,6 +78,7 @@ class AnimeActiveUserPerDayAPI(APIView):
             AnimeUser.objects.extra(select={"day": "date( created_at )"})
             .values("day")
             .annotate(count=Count("created_at"))
+            .order_by("day")
         )
         Active_User_Per_Day = list(Active_User_Per_Day_Set)
         if (
@@ -124,14 +125,16 @@ class AnimeActiveRoomPerDayAPI(APIView):
             AnimeRoom.objects.extra(select={"day": "date( created_at )"})
             .values("day")
             .annotate(count=Count("created_at"))
+            .order_by("day")
         )
+        print(list(Active_Room_Per_Day_Set))
         Active_User_Room_Day = list(Active_Room_Per_Day_Set)
         if (
             len(Active_User_Room_Day) == 0
             or Active_User_Room_Day[-1]["day"] != datetime.date.today()
         ):
             Active_User_Room_Day.append({"day": datetime.date.today(), "count": 0})
-
+        print(Active_User_Room_Day)
         Active_Room_Per_Day_Pd = (
             pd.DataFrame(Active_User_Room_Day)
             .set_index("day")
