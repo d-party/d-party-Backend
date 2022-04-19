@@ -33,6 +33,7 @@ pytest-asyncio = "^0.18.1"
 factory-boy = "^3.2.1"
 pytest-cov = "^3.0.0"
 pytest-profiling = "^1.7.0"
+pytest-parallel = "^0.1.1"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
