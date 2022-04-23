@@ -268,8 +268,37 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Channels
 ASGI_APPLICATION = "d_party.asgi.application"
 
+if DEBUG:
+    CRON_SCHEDULE = "* * * * *"
+else:
+    CRON_SCHEDULE = "0 0 * * *"
+
 CRONJOBS = [
-    ("* * * * *", "d_party.cron.my_scheduled_job", ">> /var/log/cron.log"),
+    (
+        CRON_SCHEDULE,
+        "streamer.cron.animeroom_auto_logical_delete",
+        ">> /var/log/cron.log",
+    ),
+    (
+        CRON_SCHEDULE,
+        "streamer.cron.animeuser_auto_logical_delete",
+        ">> /var/log/cron.log",
+    ),
+    (
+        CRON_SCHEDULE,
+        "streamer.cron.animeroom_auto_hard_delete",
+        ">> /var/log/cron.log",
+    ),
+    (
+        CRON_SCHEDULE,
+        "streamer.cron.animeuser_auto_hard_delete",
+        ">> /var/log/cron.log",
+    ),
+    (
+        CRON_SCHEDULE,
+        "streamer.cron.animereaction_auto_hard_delete",
+        ">> /var/log/cron.log",
+    ),
 ]
 if DEBUG:
     CRONTAB_COMMAND_SUFFIX = "2>&1"
