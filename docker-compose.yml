@@ -19,12 +19,14 @@ services:
   django:
     container_name: Django
     build:
-      context: .
-      dockerfile: ./Django/Dockerfile
+      context: Django
+      dockerfile: Dockerfile
     ports:
       - 8000:8000
     volumes:
       - ./Django/:/usr/src/app/
+      - ./Django/.env.django:/env_files/.env.django
+      - .env.global:/env_files/.env.global
     command: "sh entorypoint.sh"
     env_file:
       - ./Django/.env.django
