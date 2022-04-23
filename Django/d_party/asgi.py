@@ -25,10 +25,11 @@ import streamer.routing
 from . import settings
 
 allowed_hosts = [
-    "anime.dmkt-sp.jp",
-    "http://anime.dmkt-sp.jp:80",
-    "https://anime.dmkt-sp.jp",
-    "https://anime.dmkt-sp.jp:443",
+    os.environ.get("D_ANIME_STORE_DOMAIN"),
+    "http://" + os.environ.get("D_ANIME_STORE_DOMAIN"),
+    "https://" + os.environ.get("D_ANIME_STORE_DOMAIN"),
+    "http://" + os.environ.get("D_ANIME_STORE_DOMAIN") + ":80",
+    "https://" + os.environ.get("D_ANIME_STORE_DOMAIN") + ":443",
 ]
 
 if settings.DEBUG:
