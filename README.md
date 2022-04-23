@@ -1,4 +1,4 @@
-# Backend
+# d-party Backend
 
 [![Django pytest](https://github.com/d-party/d-party-Backend/actions/workflows/pytest.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/pytest.yml)
 [![codecov](https://codecov.io/gh/d-party/d-party-Backend/branch/main/graph/badge.svg?token=WZ8DXWKN50)](https://codecov.io/gh/d-party/d-party-Backend)
@@ -56,3 +56,31 @@ docker-compose exec django poetry run pytest --cov --workers auto
 ```bash
 docker-compose exec django cat /var/log/cron.log
 ```
+
+
+### その他
+
+開発に必要な情報は出来る限り、[wiki](https://github.com/d-party/d-party-Backend/wiki)に集約しています。
+適宜ご参照ください。
+
+また、質問事項などがありましたら、[ディスカッション](https://github.com/d-party/d-party-Backend/discussions)からご連絡ください。
+
+
+## 関連リンク
+
+### リリース
+
+- [d-party.net](https://d-party.net/)
+
+### 拡張機能
+
+#### ウェブストア
+
+- [d-party - Chrome ウェブストア](https://chrome.google.com/webstore/detail/d-party/ibmlcfpijglpfbfgaleaeooebgdgcbpc)
+
+
+#### リポジトリ
+
+- [d-party/d-party-Chrome-Extensions](https://github.com/d-party/d-party-Chrome-Extensions)
+
+
