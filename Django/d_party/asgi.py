@@ -25,11 +25,11 @@ import streamer.routing
 from . import settings
 
 allowed_hosts = [
-    os.environ.get("D_ANIME_STORE_DOMAIN"),
-    "http://" + os.environ.get("D_ANIME_STORE_DOMAIN"),
-    "https://" + os.environ.get("D_ANIME_STORE_DOMAIN"),
-    "http://" + os.environ.get("D_ANIME_STORE_DOMAIN") + ":80",
-    "https://" + os.environ.get("D_ANIME_STORE_DOMAIN") + ":443",
+    os.environ["D_ANIME_STORE_DOMAIN"],
+    "http://" + os.environ["D_ANIME_STORE_DOMAIN"],
+    "https://" + os.environ["D_ANIME_STORE_DOMAIN"],
+    "http://" + os.environ["D_ANIME_STORE_DOMAIN"] + ":80",
+    "https://" + os.environ["D_ANIME_STORE_DOMAIN"] + ":443",
 ]
 
 if settings.DEBUG:
