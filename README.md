@@ -1,4 +1,5 @@
 # Backend
+
 [![Django pytest](https://github.com/d-party/d-party-Backend/actions/workflows/pytest.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/pytest.yml)
 [![codecov](https://codecov.io/gh/d-party/d-party-Backend/branch/main/graph/badge.svg?token=WZ8DXWKN50)](https://codecov.io/gh/d-party/d-party-Backend)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/d-Party/d-Party-Backend/blob/main/LICENSE)
@@ -42,11 +43,16 @@ settings.py で`debug = True`においてコンテナを起動させた場合に
 2. MySQL ディレクトリにある data ディレクトリを中身ごと削除する
 3. Django/streamer ディレクトリにある migrations ディレクトリを中身事削除する
 
-
 ### テストを実行
 
 テストを実行したい場合、全てのコンテナを立ち上げてから、以下のコマンドを実行してください。
 
 ```
-docker-compose exec django poetry run pytest --cov
+docker-compose exec django poetry run pytest --cov --workers auto
+```
+
+### cronの標準出力/エラー出力を取得
+
+```bash
+docker-compose exec django cat /var/log/cron.log
 ```
