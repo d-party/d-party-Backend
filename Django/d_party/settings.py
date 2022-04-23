@@ -22,18 +22,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ("SECRET_KEY")
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ("DEBUG") == "1"
+DEBUG = os.environ["DEBUG"] == "1"
 
-ALLOWED_HOSTS = [os.environ("MY_DOMAIN"), "www." + os.environ("MY_DOMAIN")]
+ALLOWED_HOSTS = [os.environ["MY_DOMAIN"], "www." + os.environ["MY_DOMAIN"]]
 if DEBUG:
     ALLOWED_HOSTS += ["*"]
 CSRF_TRUSTED_ORIGINS = [
-    "https://*." + os.environ("MY_DOMAIN"),
+    "https://*." + os.environ["MY_DOMAIN"],
     "https://*.127.0.0.1",
-    "wss://*." + os.environ("MY_DOMAIN"),
+    "wss://*." + os.environ["MY_DOMAIN"],
     "wss://*.127.0.0.1",
 ]
 
@@ -105,12 +105,12 @@ CHANNEL_LAYERS = {
 
 DATABASES = {
     "default": {
-        "ENGINE": os.environ("DATABASE_ENGINE"),
-        "NAME": os.environ("MYSQL_DATABASE"),
-        "USER": os.environ("DATABASE_USER"),
-        "PASSWORD": os.environ("MYSQL_ROOT_PASSWORD"),
-        "HOST": os.environ("DATABASE_HOST"),
-        "PORT": os.environ("DATABASE_PORT"),
+        "ENGINE": os.environ["DATABASE_ENGINE"],
+        "NAME": os.environ["MYSQL_DATABASE"],
+        "USER": os.environ["DATABASE_USER"],
+        "PASSWORD": os.environ["MYSQL_ROOT_PASSWORD"],
+        "HOST": os.environ["DATABASE_HOST"],
+        "PORT": os.environ["DATABASE_PORT"],
         "TEST": {
             "NAME": "test_db",
             "MIRROR": "default",
@@ -269,11 +269,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 ASGI_APPLICATION = "d_party.asgi.application"
 
 CRONJOBS = [
-    ("* * * * *", "streamer.cron.my_scheduled_job", ">> /var/log/cron.log"),
+    ("* * * * *", "d_party.cron.my_scheduled_job", ">> /var/log/cron.log"),
 ]
-CRONTAB_COMMAND_SUFFIX = "2>&1"
-
-CRONTAB_DJANGO_MANAGE_PATH = "/usr/src/app/manage.py"
+if DEBUG:
+    CRONTAB_COMMAND_SUFFIX = "2>&1"
 
 if DEBUG:
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
