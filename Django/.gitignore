@@ -95,3 +95,5 @@ static/
 migrations/
 
 prof/*
+
+.coverage*
