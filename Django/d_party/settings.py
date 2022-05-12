@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+
 from pathlib import Path
 import os
 import socket
@@ -268,11 +269,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Channels
 ASGI_APPLICATION = "d_party.asgi.application"
 
-if DEBUG:
-    CRON_SCHEDULE = "* * * * *"
-else:
-    CRON_SCHEDULE = "0 0 * * *"
-
+CRON_SCHEDULE = "* * * * *" if DEBUG else "0 0 * * *"
 CRONJOBS = [
     (
         CRON_SCHEDULE,
@@ -303,9 +300,8 @@ CRONJOBS = [
 if DEBUG:
     CRONTAB_COMMAND_SUFFIX = "2>&1"
 
-if DEBUG:
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-    INTERNAL_IPS = [ip[:-1] + "1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]
+    INTERNAL_IPS = [f"{ip[:-1]}1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]
 
 DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK": lambda request: True,

@@ -46,7 +46,7 @@ class AnimeRoomLobby(TemplateView):
             anime_room = get_object_or_404(AnimeRoom, room_id=room_id)
         except:
             raise Http404()
-        if anime_room is None or not (anime_room.deleted_at is None):
+        if anime_room is None or anime_room.deleted_at is not None:
             raise Http404()
         url_param = urllib.parse.urlencode(
             {

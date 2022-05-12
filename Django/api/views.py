@@ -33,27 +33,26 @@ class ChromeExtensionVersionCheckAPI(APIView):
             バージョンチェックの成否は
 
         """
-        if "extension-version" in request.GET:
-            current_version: str = str(request.GET.get("extension-version"))
-            required_version: str = str(os.getenv("CHROME_EXTENSION_REQUIRED_VERSION"))
-            try:
-                current_strict_version = StrictVersion(current_version)
-                required_strict_version = StrictVersion(required_version)
-            except:
-                return Response(
-                    {"message": "求めているバージョンの記法と一致しません"},
-                    status=status.HTTP_406_NOT_ACCEPTABLE,
-                )
-
-            return Response(
-                {"is_possible": current_strict_version >= required_strict_version},
-                status=status.HTTP_200_OK,
-            )
-        else:
+        if "extension-version" not in request.GET:
             return Response(
                 {"message": "extension-versionパラメータが存在しません"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+        current_version: str = str(request.GET.get("extension-version"))
+        required_version: str = str(os.getenv("CHROME_EXTENSION_REQUIRED_VERSION"))
+        try:
+            current_strict_version = StrictVersion(current_version)
+            required_strict_version = StrictVersion(required_version)
+        except:
+            return Response(
+                {"message": "求めているバージョンの記法と一致しません"},
+                status=status.HTTP_406_NOT_ACCEPTABLE,
+            )
+
+        return Response(
+            {"is_possible": current_strict_version >= required_strict_version},
+            status=status.HTTP_200_OK,
+        )
 
 
 class AnimeActiveUserPerDayAPI(APIView):
@@ -82,7 +81,7 @@ class AnimeActiveUserPerDayAPI(APIView):
         )
         Active_User_Per_Day = list(Active_User_Per_Day_Set)
         if (
-            len(Active_User_Per_Day) == 0
+            not Active_User_Per_Day
             or Active_User_Per_Day[-1]["day"] != datetime.date.today()
         ):
             Active_User_Per_Day.append({"day": datetime.date.today(), "count": 0})
@@ -129,7 +128,7 @@ class AnimeActiveRoomPerDayAPI(APIView):
         )
         Active_User_Room_Day = list(Active_Room_Per_Day_Set)
         if (
-            len(Active_User_Room_Day) == 0
+            not Active_User_Room_Day
             or Active_User_Room_Day[-1]["day"] != datetime.date.today()
         ):
             Active_User_Room_Day.append({"day": datetime.date.today(), "count": 0})
@@ -155,16 +154,16 @@ class AnimeRoomReactionCountAPI(APIView):
     permission_classes = [IsAdminUser]
 
     def get(self, request, format=None) -> Response:
-        response = []
-        for x in ReactionType.choices:
-            response.append(
-                {
-                    "count": AnimeReaction.objects.filter(reaction_type=x[0])
-                    .all()
-                    .count(),
-                    "reaction_type": x[1],
-                }
-            )
+        response = [
+            {
+                "count": AnimeReaction.objects.filter(reaction_type=x[0])
+                .all()
+                .count(),
+                "reaction_type": x[1],
+            }
+            for x in ReactionType.choices
+        ]
+
         return Response({"data": response})
 
 
