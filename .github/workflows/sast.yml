@@ -1,4 +1,4 @@
-name: sast-report
+name: SAST
 
 on:
   pull_request:
