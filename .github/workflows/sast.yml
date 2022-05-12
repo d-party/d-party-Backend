@@ -1,0 +1,51 @@
+name: SAST
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+jobs:
+  bandit:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+      - name: install bandit
+        run: pip install bandit
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: run bandit
+        run: |
+          bandit Django -r -o ./bandit.txt -f txt -c ./.github/bandit.yml
+      - name: Archive bandit log
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: bandit-report
+          path: ./bandit.txt
+
+  pyt:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: install utils
+        run: |
+          sudo apt-get update
+          sudo apt-get install moreutils -y
+      - uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+      - name: install python-taint
+        run: pip install python-taint
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: run pyt
+        run: |
+          pyt -a D -o pyt.txt ./Django
+      - name: Archive pyt log
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: pyt-report
+          path: ./pyt.txt
