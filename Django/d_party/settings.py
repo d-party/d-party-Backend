@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_crontab",
+    "django_extensions",
     "channels",
     "debug_toolbar",
     "django_boost",
@@ -276,7 +277,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 ASGI_APPLICATION = "d_party.asgi.application"
 
 # axes
-
 AXES_FAILURE_LIMIT = 10
 AXES_COOLOFF_TIME = 6
 AXES_ONLY_USER_FAILURES = True
@@ -284,6 +284,9 @@ AXES_RESET_ON_SUCCESS = True
 
 if DEBUG:
     AXES_ENABLED = False
+
+# django-extensions
+RUNSERVERPLUS_SERVER_ADDRESS_PORT = "0.0.0.0:8000"
 
 # django-crontab
 
