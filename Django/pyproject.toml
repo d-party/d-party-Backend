@@ -2,7 +2,7 @@
 name = "d-Party"
 version = "0.1.0"
 description = ""
-authors = ["Takashi Uno <euno.eng@gmail.com>"]
+authors = ["U-Not <euno.eng@gmail.com>"]
 readme = "README.md"
 packages = [{include = "d_party"}]
 
@@ -25,6 +25,7 @@ pandas = "^1.4.2"
 django-request = "^1.6.1"
 django-crontab = "^0.7.1"
 django-dotenv = "^1.4.2"
+django-axes = "^5.33.0"
 
 
 [tool.poetry.dev-dependencies]
