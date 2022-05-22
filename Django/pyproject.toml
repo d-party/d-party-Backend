@@ -41,6 +41,7 @@ factory-boy = "^3.2.1"
 pytest-cov = "^3.0.0"
 pytest-profiling = "^1.7.0"
 pytest-parallel = "^0.1.1"
+lizard = "^1.17.10"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
