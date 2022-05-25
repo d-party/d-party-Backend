@@ -16,7 +16,7 @@ channels-redis = "^3.3.1"
 uvicorn = {extras = ["standard"], version = "^0.17.6"}
 django-debug-toolbar = "^3.4.0"
 django-jazzmin = "^2.4.0"
-pydantic = "^1.9.0"
+pydantic = "^1.9.1"
 django-boost = "^2.0"
 djangorestframework = "^3.13.1"
 django-filter = "^21.1"
