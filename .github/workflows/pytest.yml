@@ -1,4 +1,4 @@
-name: Django pytest
+name: pytest
 
 on:
   push:
