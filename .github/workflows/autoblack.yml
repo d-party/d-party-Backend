@@ -3,9 +3,8 @@
 # Otherwise, Black is run and its changes are committed to the repo.
 # https://github.com/cclauss/autoblack
 
-name: Python Auto Black
+name: Black Formatter
 on:
-  push:
   pull_request:
     branches:
       - main
