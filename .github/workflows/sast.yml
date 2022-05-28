@@ -29,7 +29,6 @@ jobs:
         with:
           name: bandit-report
           path: ./bandit.txt
-
   pyt:
     runs-on: ubuntu-20.04
     steps:
