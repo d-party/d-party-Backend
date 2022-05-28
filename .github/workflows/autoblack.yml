@@ -5,6 +5,10 @@
 
 name: Black Formatter
 on:
+  push:
+    branches:
+      - main
+      - develop
   pull_request:
     branches:
       - main
