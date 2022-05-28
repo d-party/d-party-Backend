@@ -49,14 +49,21 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_crontab",
+    "django_extensions",
     "channels",
     "debug_toolbar",
     "django_boost",
     "rest_framework",
+    "axes",
     "request",
     "streamer",
     "web",
     "api",
+]
+
+AUTHENTICATION_BACKENDS = [
+    "axes.backends.AxesBackend",
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
 MIDDLEWARE = [
@@ -68,6 +75,7 @@ MIDDLEWARE = [
     "request.middleware.RequestMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "axes.middleware.AxesMiddleware",
 ]
 if DEBUG:
     MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
@@ -267,6 +275,20 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Channels
 ASGI_APPLICATION = "d_party.asgi.application"
+
+# axes
+AXES_FAILURE_LIMIT = 10
+AXES_COOLOFF_TIME = 6
+AXES_ONLY_USER_FAILURES = True
+AXES_RESET_ON_SUCCESS = True
+
+if DEBUG:
+    AXES_ENABLED = False
+
+# django-extensions
+RUNSERVERPLUS_SERVER_ADDRESS_PORT = "0.0.0.0:8000"
+
+# django-crontab
 
 if DEBUG:
     CRON_SCHEDULE = "* * * * *"

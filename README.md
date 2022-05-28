@@ -47,7 +47,7 @@ settings.py で`debug = True`においてコンテナを起動させた場合に
 
 テストを実行したい場合、全てのコンテナを立ち上げてから、以下のコマンドを実行してください。
 
-```
+```bash
 docker-compose exec django poetry run pytest --cov --workers auto
 ```
 
@@ -57,14 +57,12 @@ docker-compose exec django poetry run pytest --cov --workers auto
 docker-compose exec django cat /var/log/cron.log
 ```
 
-
 ### その他
 
 開発に必要な情報は出来る限り、[wiki](https://github.com/d-party/d-party-Backend/wiki)に集約しています。
 適宜ご参照ください。
 
 また、質問事項などがありましたら、[ディスカッション](https://github.com/d-party/d-party-Backend/discussions)からご連絡ください。
-
 
 ## 関連リンク
 
@@ -78,9 +76,6 @@ docker-compose exec django cat /var/log/cron.log
 
 - [d-party - Chrome ウェブストア](https://chrome.google.com/webstore/detail/d-party/ibmlcfpijglpfbfgaleaeooebgdgcbpc)
 
-
 #### リポジトリ
 
 - [d-party/d-party-Chrome-Extensions](https://github.com/d-party/d-party-Chrome-Extensions)
-
-
