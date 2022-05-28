@@ -23,7 +23,12 @@ jobs:
       - uses: actions/setup-python@v3
         with:
           python-version: "3.10"
-      - name: Black Code Formatter
-        uses: lgeiger/black-action@v1.0.1
-        with:
-          SRC: "Django"
+      - run: pip install black
+      - name: black
+        run: |
+          black . | tee
+          git config --global user.name github-actions
+          git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com'          
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git commit -am "fixup! Format Python code with psf/black push"
+          git push --force origin HEAD:$GITHUB_REF
