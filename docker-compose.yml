@@ -37,6 +37,8 @@ services:
   mysql:
     image: mysql:8.0
     container_name: MySQL
+    cap_add:
+      - SYS_NICE
     ports:
       - 3306:3306
     volumes:
