@@ -1,6 +1,9 @@
 # d-party Backend
 
 [![Django pytest](https://github.com/d-party/d-party-Backend/actions/workflows/pytest.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/pytest.yml)
+[![Lizard Runner](https://github.com/d-party/d-party-Backend/actions/workflows/lizard.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/lizard.yml)
+[![SAST](https://github.com/d-party/d-party-Backend/actions/workflows/sast.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/sast.yml)
+[![CodeQL](https://github.com/d-party/d-party-Backend/actions/workflows/codeql-analysis.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/codeql-analysis.yml)
 [![codecov](https://codecov.io/gh/d-party/d-party-Backend/branch/main/graph/badge.svg?token=WZ8DXWKN50)](https://codecov.io/gh/d-party/d-party-Backend)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/d-Party/d-Party-Backend/blob/main/LICENSE)
 
