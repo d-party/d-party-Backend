@@ -5,8 +5,11 @@
 [![SAST](https://github.com/d-party/d-party-Backend/actions/workflows/sast.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/sast.yml)
 [![Python Auto Black](https://github.com/d-party/d-party-Backend/actions/workflows/autoblack.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/autoblack.yml)
 [![CodeQL](https://github.com/d-party/d-party-Backend/actions/workflows/codeql-analysis.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/codeql-analysis.yml)
+
 [![codecov](https://codecov.io/gh/d-party/d-party-Backend/branch/main/graph/badge.svg?token=WZ8DXWKN50)](https://codecov.io/gh/d-party/d-party-Backend)
+[![d-paty](https://img.shields.io/website?label=d-paty&url=https%3A%2F%2Fd-party.net)](https://d-party.net)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/d-Party/d-Party-Backend/blob/main/LICENSE)
+
 
 [![Docker](https://img.shields.io/badge/-Docker-EEE.svg?logo=docker&style=flat)](https://www.docker.com/)
 [![Python](https://img.shields.io/badge/Python:3.10-F9DC3E.svg?logo=python&style=flat)](https://www.python.org/)
