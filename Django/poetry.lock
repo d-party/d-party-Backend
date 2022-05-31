@@ -270,7 +270,7 @@ bcrypt = ["bcrypt"]
 
 [[package]]
 name = "django-axes"
-version = "5.33.0"
+version = "5.34.0"
 description = "Keep track of failed login attempts in Django-powered sites."
 category = "main"
 optional = false
@@ -1070,7 +1070,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "34aa66fe5a185164aa3f9d637a0652aeb2f41dedbbd4ace17857f17d032a2c46"
+content-hash = "c90a152b5b290a76f01aa08fd6927a90fdac2b9375d54467d52181738539f834"
 
 [metadata.files]
 aioredis = [
@@ -1277,8 +1277,8 @@ django = [
     {file = "Django-4.0.4.tar.gz", hash = "sha256:4e8177858524417563cc0430f29ea249946d831eacb0068a1455686587df40b5"},
 ]
 django-axes = [
-    {file = "django-axes-5.33.0.tar.gz", hash = "sha256:b4f7a7d120a73da12ec9a35e0661adfe06d19a5209424e04800fb2b57207ea70"},
-    {file = "django_axes-5.33.0-py3-none-any.whl", hash = "sha256:bbeffd49439f9f7a6cd6f9c946cbc3b8651000ea66f0bf0bae04e7c2a5939118"},
+    {file = "django-axes-5.34.0.tar.gz", hash = "sha256:5f2797fb9956769181c92f450a4d400974917561f5be5b8ae4689b1e622626e9"},
+    {file = "django_axes-5.34.0-py3-none-any.whl", hash = "sha256:5c1b26e5891ef032efea2ece91d239c373f80fda66299333cdbc03e096a12530"},
 ]
 django-boost = [
     {file = "django_boost-2.0-py3-none-any.whl", hash = "sha256:266c22a5a7bdae480cfdc337b11073e1e906521a4f9c5b3dbb7e15bfeb916065"},
