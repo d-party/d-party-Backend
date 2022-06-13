@@ -14,4 +14,4 @@ ADD pyproject.toml /usr/src/app
 RUN poetry install --no-root
 
 RUN apt-get update
-RUN apt-get install -y graphviz cron
+RUN apt-get install -y graphviz cron watchman
