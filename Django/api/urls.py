@@ -39,4 +39,5 @@ urlpatterns = [
         "v1/statistics/anime-store/anime-user-alive-count",
         views.AnimeUserAliveCountAPI.as_view(),
     ),
+    path("shields/total-user",views.RoomCountShieldsAPI.as_view())
 ]

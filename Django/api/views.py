@@ -5,6 +5,8 @@ import pandas as pd
 from streamer.models import AnimeUser, AnimeRoom, AnimeReaction, ReactionType
 from django.shortcuts import render
 from django.db.models import Count
+from django_dynamic_shields.views import DynamicShieldsView
+from django_dynamic_shields.data import ShieldsData
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser, AllowAny
@@ -211,3 +213,7 @@ class AnimeRoomAliveCountAPI(APIView):
 
     def get(self, request, format=None) -> Response:
         return Response({"data": {"count": AnimeRoom.objects.alive().count()}})
+
+class RoomCountShieldsAPI(DynamicShieldsView):
+    def create_shields_data(self):
+        self.shields_data=ShieldsData(label="TotalRoom",message=str(AnimeRoom.objects.all().count()))
