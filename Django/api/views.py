@@ -263,7 +263,7 @@ class RoomCountParDayShieldsAPI(DynamicShieldsView):
         self.shields_data = ShieldsData(
             label="Room",
             message=Active_Room_Per_Day_Mean,
-            labelColor="brightgreen",
+            color="brightgreen",
             cacheSeconds=86400,
         )
 
@@ -315,7 +315,7 @@ class UserCountParDayShieldsAPI(DynamicShieldsView):
         self.shields_data = ShieldsData(
             label="User",
             message=Active_User_Per_Day_Mean,
-            labelColor="brightgreen",
+            color="brightgreen",
             cacheSeconds=86400,
         )
 
