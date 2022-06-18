@@ -258,7 +258,7 @@ class RoomCountParDayShieldsAPI(DynamicShieldsView):
             lambda x: x.to_pydatetime().date()
         )
         Active_Room_Per_Day_Mean = (
-            "{:.2f}".format(str(Active_Room_Per_Day_Pd["count"].mean())) + "/day"
+            "{:.2f}".format(Active_Room_Per_Day_Pd["count"].mean()) + "/day"
         )
         self.shields_data = ShieldsData(
             label="Room",
@@ -310,7 +310,7 @@ class UserCountParDayShieldsAPI(DynamicShieldsView):
             lambda x: x.to_pydatetime().date()
         )
         Active_User_Per_Day_Mean = (
-            "{:.2f}".format(str(Active_User_Per_Day_Pd["count"].mean())) + "/day"
+            "{:.2f}".format(Active_User_Per_Day_Pd["count"].mean()) + "/day"
         )
         self.shields_data = ShieldsData(
             label="User",
