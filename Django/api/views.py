@@ -1,4 +1,5 @@
 from cProfile import label
+from linecache import checkcache
 import os
 import datetime
 import pandas as pd
@@ -256,14 +257,66 @@ class RoomCountParDayShieldsAPI(DynamicShieldsView):
         Active_Room_Per_Day_Pd["day"] = Active_Room_Per_Day_Pd.index.map(
             lambda x: x.to_pydatetime().date()
         )
-        Active_Room_Per_Day_Mean = str(Active_Room_Per_Day_Pd["count"].mean()) + "/day"
-        self.shields_data = ShieldsData(label="Room", message=Active_Room_Per_Day_Mean)
+        Active_Room_Per_Day_Mean = (
+            "{:.2f}".format(str(Active_Room_Per_Day_Pd["count"].mean())) + "/day"
+        )
+        self.shields_data = ShieldsData(
+            label="Room",
+            message=Active_Room_Per_Day_Mean,
+            labelColor="brightgreen",
+            cacheSeconds=86400,
+        )
 
 
 class UserCountShieldsAPI(DynamicShieldsView):
     def create_shields_data(self):
         self.shields_data = ShieldsData(
             label="TotalUser", message=str(AnimeUser.objects.all().count())
+        )
+
+
+class UserCountParDayShieldsAPI(DynamicShieldsView):
+    def create_shields_data(self):
+        """アクティブユーザー数の平均バッジ
+
+        Args:
+            request ([type]): [description]
+            format ([type], optional): [description]. Defaults to None.
+
+        Returns:
+            [Response]: {"description": "理由を記述"}
+
+        """
+        Active_User_Per_Day_Set = (
+            AnimeUser.objects.extra(select={"day": "date( created_at )"})
+            .values("day")
+            .annotate(count=Count("created_at"))
+            .order_by("day")
+        )
+        Active_User_Per_Day = list(Active_User_Per_Day_Set)
+        if (
+            len(Active_User_Per_Day) == 0
+            or Active_User_Per_Day[-1]["day"] != datetime.date.today()
+        ):
+            Active_User_Per_Day.append({"day": datetime.date.today(), "count": 0})
+
+        Active_User_Per_Day_Pd = (
+            pd.DataFrame(Active_User_Per_Day)
+            .set_index("day")
+            .asfreq("1D", fill_value=0)
+        )
+
+        Active_User_Per_Day_Pd["day"] = Active_User_Per_Day_Pd.index.map(
+            lambda x: x.to_pydatetime().date()
+        )
+        Active_User_Per_Day_Mean = (
+            "{:.2f}".format(str(Active_User_Per_Day_Pd["count"].mean())) + "/day"
+        )
+        self.shields_data = ShieldsData(
+            label="User",
+            message=Active_User_Per_Day_Mean,
+            labelColor="brightgreen",
+            cacheSeconds=86400,
         )
 
 
