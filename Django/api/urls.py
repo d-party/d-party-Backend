@@ -42,5 +42,6 @@ urlpatterns = [
     path("shields/total-room", views.RoomCountShieldsAPI.as_view()),
     path("shields/room-par-day", views.RoomCountParDayShieldsAPI.as_view()),
     path("shields/total-user", views.UserCountShieldsAPI.as_view()),
+    path("shields/user-par-day", views.UserCountParDayShieldsAPI.as_view()),
     path("shields/total-reaction", views.ReactionCountShieldsAPI.as_view()),
 ]
