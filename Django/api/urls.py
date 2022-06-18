@@ -39,7 +39,7 @@ urlpatterns = [
         "v1/statistics/anime-store/anime-user-alive-count",
         views.AnimeUserAliveCountAPI.as_view(),
     ),
-    path("shields/total-room",views.RoomCountShieldsAPI.as_view()),
-    path("shields/total-user",views.UserCountShieldsAPI.as_view()),
-    path("shields/total-reaction",views.ReactionCountShieldsAPI.as_view())
+    path("shields/total-room", views.RoomCountShieldsAPI.as_view()),
+    path("shields/total-user", views.UserCountShieldsAPI.as_view()),
+    path("shields/total-reaction", views.ReactionCountShieldsAPI.as_view()),
 ]
