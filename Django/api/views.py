@@ -214,15 +214,23 @@ class AnimeRoomAliveCountAPI(APIView):
     def get(self, request, format=None) -> Response:
         return Response({"data": {"count": AnimeRoom.objects.alive().count()}})
 
+
 class RoomCountShieldsAPI(DynamicShieldsView):
     def create_shields_data(self):
-        self.shields_data=ShieldsData(label="TotalRoom",message=str(AnimeRoom.objects.all().count()))
+        self.shields_data = ShieldsData(
+            label="TotalRoom", message=str(AnimeRoom.objects.all().count())
+        )
+
 
 class UserCountShieldsAPI(DynamicShieldsView):
     def create_shields_data(self):
-        self.shields_data=ShieldsData(label="TotalUser",message=str(AnimeUser.objects.all().count()))
+        self.shields_data = ShieldsData(
+            label="TotalUser", message=str(AnimeUser.objects.all().count())
+        )
 
 
 class ReactionCountShieldsAPI(DynamicShieldsView):
     def create_shields_data(self):
-        self.shields_data=ShieldsData(label="TotalReaction",message=str(AnimeReaction.objects.all().count()))
+        self.shields_data = ShieldsData(
+            label="TotalReaction", message=str(AnimeReaction.objects.all().count())
+        )
