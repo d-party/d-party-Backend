@@ -324,7 +324,7 @@ python-versions = "*"
 
 [[package]]
 name = "django-dynamic-shields"
-version = "0.2.3"
+version = "0.2.8"
 description = ""
 category = "main"
 optional = false
@@ -1081,7 +1081,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "5d68b919100ac2057805dad60157f8bdc9e0be445fe9d92228f90397525f23ed"
+content-hash = "68c5c92c2119eb08fdc54458868026eafb40108583b9f3c09ca41bdf96687b56"
 
 [metadata.files]
 aioredis = [
@@ -1307,8 +1307,8 @@ django-dotenv = [
     {file = "django_dotenv-1.4.2-py2.py3-none-any.whl", hash = "sha256:a9b1b40a70bd321acd231926acedb9bd2c5e873e33a1873b34a7276d196a765e"},
 ]
 django-dynamic-shields = [
-    {file = "django-dynamic-shields-0.2.3.tar.gz", hash = "sha256:f0eff084f1c0fd67b7b289a007e15e8126cc1b35d044b94aba0147730b665429"},
-    {file = "django_dynamic_shields-0.2.3-py3-none-any.whl", hash = "sha256:4797569479cb3c9742e9bdaff5fcb779769c5bd05bb09c72f4d075f1ea723402"},
+    {file = "django-dynamic-shields-0.2.8.tar.gz", hash = "sha256:21b1bc3beb4852d1d9cd6c244bda91b207dd62dd9ecddb3384dac7e35f4e6b75"},
+    {file = "django_dynamic_shields-0.2.8-py3-none-any.whl", hash = "sha256:44e1a53d3a8a835686cd49b2b7f7bd019327725caf4754aac8a7592bc25cc96d"},
 ]
 django-extensions = [
     {file = "django-extensions-3.1.5.tar.gz", hash = "sha256:28e1e1bf49f0e00307ba574d645b0af3564c981a6dfc87209d48cb98f77d0b1a"},
