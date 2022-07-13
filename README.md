@@ -61,6 +61,22 @@ settings.py で`debug = True`においてコンテナを起動させた場合に
 docker-compose exec django poetry run pytest --cov --workers auto
 ```
 
+### ライセンスチェックを実行
+
+ライセンスチェックを実行したい場合、全てのコンテナを立ち上げてから、以下のコマンドを実行してください。
+
+```bash
+docker-compose exec django poetry run pip-licenses
+```
+
+### 依存関係の可視化
+
+依存関係の可視化を実行したい場合、全てのコンテナを立ち上げてから、以下のコマンドを実行してください。
+
+```bash
+docker-compose exec django poetry run pipdeptree --graph-output dot > dependencies.dot
+```
+
 ### cronの標準出力/エラー出力を取得
 
 ```bash
