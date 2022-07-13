@@ -24,8 +24,7 @@ jobs:
           docker-compose exec -T django poetry run python manage.py collectstatic --noinput
       - name: init containers
         run: |
-          docker-compose exec django poetry run pip-licenses --order=license\
-            --allow-only="Apache Software License;\
+          docker-compose exec django poetry run pip-licenses --order=license --allow-only="Apache Software License;\
             Apache Software License;\
             BSD License;BSD;\
             Freeware\
