@@ -5,6 +5,7 @@
 [![SAST](https://github.com/d-party/d-party-Backend/actions/workflows/sast.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/sast.yml)
 [![Python Auto Black](https://github.com/d-party/d-party-Backend/actions/workflows/autoblack.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/autoblack.yml)
 [![CodeQL](https://github.com/d-party/d-party-Backend/actions/workflows/codeql-analysis.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/codeql-analysis.yml)
+[![LicenseCheck](https://github.com/d-party/d-party-Backend/actions/workflows/license-check.yml/badge.svg?event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/license-check.yml)
 
 [![codecov](https://codecov.io/gh/d-party/d-party-Backend/branch/main/graph/badge.svg?token=WZ8DXWKN50)](https://codecov.io/gh/d-party/d-party-Backend)
 [![Website](https://img.shields.io/website?label=d-party.net&up_message=online&url=https%3A%2F%2Fd-party.net)](https://d-party.net)
@@ -59,6 +60,22 @@ settings.py で`debug = True`においてコンテナを起動させた場合に
 
 ```bash
 docker-compose exec django poetry run pytest --cov --workers auto
+```
+
+### ライセンスチェックを実行
+
+ライセンスチェックを実行したい場合、全てのコンテナを立ち上げてから、以下のコマンドを実行してください。
+
+```bash
+docker-compose exec django poetry run pip-licenses
+```
+
+### 依存関係の可視化
+
+依存関係の可視化を実行したい場合、全てのコンテナを立ち上げてから、以下のコマンドを実行してください。
+
+```bash
+docker-compose exec django poetry run pipdeptree --graph-output dot > dependencies.dot
 ```
 
 ### cronの標準出力/エラー出力を取得
