@@ -2,10 +2,6 @@ name: LicenseCheck
 
 on:
   push:
-  pull_request:
-    branches:
-      - main
-      - develop
 
 jobs:
   license-check:
