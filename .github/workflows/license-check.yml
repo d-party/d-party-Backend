@@ -1,4 +1,4 @@
-name: license-check
+name: License-Check
 
 on:
   push:
@@ -28,10 +28,11 @@ jobs:
           --order=license --allow-only="
             Apache Software License;
             BSD License;BSD;
-            Freeware
+            Freeware;
             GNU General Public License (GPL);
-            GNU Lesser General Public License v3 or later (LGPLv3+)
-            MIT License; MIT;
+            GNU Lesser General Public License v3 or later (LGPLv3+);
+            MIT License;
+            MIT;
             Mozilla Public License 2.0 (MPL 2.0);
             Python Software Foundation License;
             UNKNOWN;
