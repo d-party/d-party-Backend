@@ -2,6 +2,9 @@ name: trivy
 
 on:
   push:
+  workflow_dispatch:
+  schedule:
+    - cron: "25 21 * * 5"
 
 jobs:
   trivy:
@@ -19,4 +22,4 @@ jobs:
           format: "table"
           exit-code: "1"
           ignore-unfixed: true
-          severity: "CRITICAL,HIGH"
+          severity: "CRITICAL,HIGH,MEDIUM"
