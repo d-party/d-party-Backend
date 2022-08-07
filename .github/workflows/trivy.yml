@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  pytest:
+  tryvy:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -19,5 +19,4 @@ jobs:
           format: "table"
           exit-code: "1"
           ignore-unfixed: true
-          vuln-type: "os,library"
           severity: "CRITICAL,HIGH"
