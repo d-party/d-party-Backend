@@ -2,13 +2,7 @@ name: SAST
 
 on:
   push:
-    branches:
-      - main
-      - develop
-  pull_request:
-    branches:
-      - main
-      - develop
+
 jobs:
   bandit:
     runs-on: ubuntu-20.04
