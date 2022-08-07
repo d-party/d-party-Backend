@@ -20,5 +20,6 @@ jobs:
         with:
           image-ref: "d-party-backend_django:latest"
           format: "table"
+          severity: "MEDIUM,HIGH,CRITICAL"
           exit-code: "1"
-          ignore-unfixed: false
+          ignore-unfixed: true
