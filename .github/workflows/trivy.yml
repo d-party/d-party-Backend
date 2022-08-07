@@ -21,4 +21,4 @@ jobs:
           image-ref: "d-party-backend_django:latest"
           format: "table"
           exit-code: "1"
-          ignore-unfixed: true
+          ignore-unfixed: false
