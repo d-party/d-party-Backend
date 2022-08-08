@@ -5,7 +5,7 @@ x-env_file: &env_file ./.env.global
 services:
   nginx:
     container_name: nginx
-    image: nginx:1.21
+    image: nginx:1.23
     ports:
       - "80:80"
       - "443:443"
@@ -60,7 +60,7 @@ services:
     volumes:
       - "./phpMyAdmin/sessions:/sessions"
   redis:
-    image: redis:6.2
+    image: redis:7.0
     container_name: Redis
     ports:
       - 6379:6379
