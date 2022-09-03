@@ -9,8 +9,12 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV DEBCONF_NOWARNINGS yes
 
+# 必須ソフトウェアのインストール
+RUN apt-get update && apt-get install -y --no-install-recommends graphviz cron
+
+# poetry環境構築
 RUN pip install --no-cache-dir poetry==1.2.0
 COPY pyproject.toml /usr/src/app
 RUN poetry install --no-root
-
-RUN apt-get update && apt-get install -y --no-install-recommends graphviz cron
+# セキュリティ上必要なライブラリ
+RUN apt-get -y clean && rm -rf /var/lib/apt/lists/*
