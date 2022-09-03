@@ -9,9 +9,8 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV DEBCONF_NOWARNINGS yes
 
-RUN pip install poetry==1.2.0
-ADD pyproject.toml /usr/src/app
+RUN pip install --no-cache-dir poetry==1.2.0
+COPY pyproject.toml /usr/src/app
 RUN poetry install --no-root
 
-RUN apt-get update
-RUN apt-get install -y graphviz cron
+RUN apt-get update && apt-get install -y --no-install-recommends graphviz cron
