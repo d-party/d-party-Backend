@@ -21,7 +21,7 @@ jobs:
       - name: check licenses
         run: >
           docker-compose exec -T django poetry run pip-licenses
-          --with-system 
+          --with-system
           --allow-only="
             Apache Software License;
             BSD License;BSD;
