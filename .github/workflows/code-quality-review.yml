@@ -19,7 +19,8 @@ jobs:
           pip install poetry
       - name: export requirements
         run: |
-          poetry export -f Django/requirements.txt --output requirements.txt
+          cd Django;
+          poetry export -f requirements.txt --output requirements.txt;
       - uses: tsuyoshicho/action-mypy@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
