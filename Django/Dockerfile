@@ -1,4 +1,4 @@
-FROM python:3.10.6
+FROM python:3.10
 
 # 作業ディレクトリを設定
 WORKDIR /usr/src/app
@@ -9,7 +9,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV DEBCONF_NOWARNINGS yes
 
-RUN pip install poetry
+RUN pip install poetry==1.2.0
 ADD pyproject.toml /usr/src/app
 RUN poetry install --no-root
 
