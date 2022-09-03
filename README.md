@@ -1,12 +1,9 @@
 # d-party Backend
 
 [![Django pytest](https://github.com/d-party/d-party-Backend/actions/workflows/pytest.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/pytest.yml)
-[![Lizard Runner](https://github.com/d-party/d-party-Backend/actions/workflows/lizard.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/lizard.yml)
-[![SAST](https://github.com/d-party/d-party-Backend/actions/workflows/sast.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/sast.yml)
-[![Python Auto Black](https://github.com/d-party/d-party-Backend/actions/workflows/autoblack.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/autoblack.yml)
-[![CodeQL](https://github.com/d-party/d-party-Backend/actions/workflows/codeql-analysis.yml/badge.svg?branch=main&event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/codeql-analysis.yml)
 [![LicenseCheck](https://github.com/d-party/d-party-Backend/actions/workflows/license-check.yml/badge.svg?event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/license-check.yml)
-[![trivy](https://github.com/d-party/d-party-Backend/actions/workflows/trivy.yml/badge.svg?event=push)](https://github.com/d-party/d-party-Backend/actions/workflows/trivy.yml)
+[![Security](https://github.com/d-party/d-party-Backend/actions/workflows/security.yml/badge.svg?branch=main)](https://github.com/d-party/d-party-Backend/actions/workflows/security.yml)
+[![Code Quality](https://github.com/d-party/d-party-Backend/actions/workflows/code-quality.yml/badge.svg?branch=main)](https://github.com/d-party/d-party-Backend/actions/workflows/code-quality.yml)
 
 [![codecov](https://codecov.io/gh/d-party/d-party-Backend/branch/main/graph/badge.svg?token=WZ8DXWKN50)](https://codecov.io/gh/d-party/d-party-Backend)
 [![Website](https://img.shields.io/website?label=d-party.net&up_message=online&url=https%3A%2F%2Fd-party.net)](https://d-party.net)

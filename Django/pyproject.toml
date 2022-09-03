@@ -47,6 +47,7 @@ lizard = "^1.17.10"
 pip-licenses = "^3.5.4"
 pipdeptree = "^2.2.1"
 graphviz = "^0.20"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

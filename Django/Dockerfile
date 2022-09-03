@@ -1,4 +1,4 @@
-FROM python:3.10.6
+FROM python:3.10
 
 # 作業ディレクトリを設定
 WORKDIR /usr/src/app
@@ -9,9 +9,12 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV DEBCONF_NOWARNINGS yes
 
-RUN pip install poetry
-ADD pyproject.toml /usr/src/app
-RUN poetry install --no-root
+# 必須ソフトウェアのインストール
+RUN apt-get update && apt-get install -y --no-install-recommends graphviz cron
 
-RUN apt-get update
-RUN apt-get install -y graphviz cron
+# poetry環境構築
+RUN pip install --no-cache-dir poetry==1.2.0
+COPY pyproject.toml /usr/src/app
+RUN poetry install --no-root
+# セキュリティ上必要なライブラリ
+RUN apt-get -y clean && rm -rf /var/lib/apt/lists/*
