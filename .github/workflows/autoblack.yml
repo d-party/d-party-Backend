@@ -26,9 +26,9 @@ jobs:
       - run: pip install black
       - name: black
         run: |
-          black . 
-          git config --global user.name github-actions || exit 0
-          git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com' || exit 0
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY || exit 0
-          git commit -am "fixup! Format Python code with psf/black push" || exit 0
-          git push --force origin HEAD:$GITHUB_REF || exit 0
+          black .;
+          git config --global user.name github-actions || exit 0;
+          git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com' || exit 0;
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY || exit 0;
+          git commit -am "fixup! Format Python code with psf/black push" || exit 0;
+          git push --force origin HEAD:$GITHUB_REF || exit 0;
