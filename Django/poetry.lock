@@ -1159,19 +1159,6 @@ MarkupSafe = ">=2.1.1"
 watchdog = ["watchdog"]
 
 [[package]]
-name = "yamllint"
-version = "1.27.1"
-description = "A linter for YAML files."
-category = "dev"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-pathspec = ">=0.5.3"
-pyyaml = "*"
-setuptools = "*"
-
-[[package]]
 name = "zope.interface"
 version = "5.4.0"
 description = "Interfaces for Python"
@@ -1190,7 +1177,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "019ed75d79fa699ff71399f56af06d7a12241003f05581c8f0390152ba7fd1b9"
+content-hash = "cd4ac25b21bf07a9799edc1f2c2638ecda318ac768c1601ccdb964e9f82669ad"
 
 [metadata.files]
 aioredis = [
@@ -2104,9 +2091,6 @@ websockets = [
 werkzeug = [
     {file = "Werkzeug-2.2.2-py3-none-any.whl", hash = "sha256:f979ab81f58d7318e064e99c4506445d60135ac5cd2e177a2de0089bfd4c9bd5"},
     {file = "Werkzeug-2.2.2.tar.gz", hash = "sha256:7ea2d48322cc7c0f8b3a215ed73eabd7b5d75d0b50e31ab006286ccff9e00b8f"},
-]
-yamllint = [
-    {file = "yamllint-1.27.1.tar.gz", hash = "sha256:e688324b58560ab68a1a3cff2c0a474e3fed371dfe8da5d1b9817b7df55039ce"},
 ]
 "zope.interface" = [
     {file = "zope.interface-5.4.0-cp27-cp27m-macosx_10_14_x86_64.whl", hash = "sha256:7df1e1c05304f26faa49fa752a8c690126cf98b40b91d54e6e9cc3b7d6ffe8b7"},

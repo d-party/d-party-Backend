@@ -47,7 +47,6 @@ lizard = "^1.17.10"
 pip-licenses = "^3.5.4"
 pipdeptree = "^2.2.1"
 graphviz = "^0.20"
-yamllint = "^1.27.1"
 
 [build-system]
 requires = ["poetry-core"]
