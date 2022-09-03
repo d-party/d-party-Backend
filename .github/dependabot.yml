@@ -1,14 +1,14 @@
 version: 2
 updates:
-  - package-ecosystem: "pip" 
-    directory: "/Django" 
+  - package-ecosystem: "pip"
+    directory: "/Django"
     schedule:
       interval: "weekly"
       timezone: "Asia/Tokyo"
       time: "12:00"
     target-branch: develop
   - package-ecosystem: "docker"
-    directory: "/Django" 
+    directory: "/Django"
     schedule:
       interval: "weekly"
       timezone: "Asia/Tokyo"
