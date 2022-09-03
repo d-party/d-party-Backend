@@ -37,7 +37,7 @@ django-debreach = "^2.1.0"
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"
 pytest-django = "^4.5.2"
-black = "^22.6.0"
+black = "^22.8.0"
 pytest-asyncio = "^0.19.0"
 factory-boy = "^3.2.1"
 pytest-cov = "^3.0.0"
