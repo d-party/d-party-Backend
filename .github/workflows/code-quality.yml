@@ -1,4 +1,4 @@
-name: Code-Quality
+name: Code Quality
 
 on:
   push:
@@ -66,4 +66,4 @@ jobs:
           docker-compose up -d
       - name: init containers
         run: |
-          docker-compose exec nginx nginx -t
+          docker-compose exec -T nginx nginx -t
