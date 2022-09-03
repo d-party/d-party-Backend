@@ -57,3 +57,13 @@ jobs:
       - uses: actions/checkout@v2
       - name: yaml-lint
         uses: ibiqlik/action-yamllint@v3
+  nginx-conf-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: run docker-compose
+        run: |
+          docker-compose up -d
+      - name: init containers
+        run: |
+          docker-compose exec nginx nginx -t
