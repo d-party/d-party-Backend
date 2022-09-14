@@ -45,7 +45,7 @@ pytest-profiling = "^1.7.0"
 pytest-parallel = "^0.1.1"
 lizard = "^1.17.10"
 pip-licenses = "^3.5.4"
-pipdeptree = "^2.2.1"
+pipdeptree = "^2.3.1"
 graphviz = "^0.20"
 
 [build-system]
