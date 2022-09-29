@@ -306,7 +306,7 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "django-debug-toolbar"
-version = "3.6.0"
+version = "3.7.0"
 description = "A configurable set of panels that display various debug information about the current request/response."
 category = "main"
 optional = false
@@ -1158,7 +1158,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "11365e2e2443128d34c02d51047c7b3810060fc17d4a3c7a77784f20839e0ba9"
+content-hash = "a10128971a90dbd90f881bfe62554eeba9f6984e87b0b874dd6990aebc9faaac"
 
 [metadata.files]
 aioredis = [
@@ -1399,8 +1399,8 @@ django-debreach = [
     {file = "django_debreach-2.1.0-py3-none-any.whl", hash = "sha256:03988a228a387ec4a2d332698ad610913d32dbcad672cf5a78842639bfeece6b"},
 ]
 django-debug-toolbar = [
-    {file = "django-debug-toolbar-3.6.0.tar.gz", hash = "sha256:95fc2fd29c56cc86678aae9f6919ececefe892f2a78c4004b193a223a8380c3d"},
-    {file = "django_debug_toolbar-3.6.0-py3-none-any.whl", hash = "sha256:fe7fe3f21865218827e2162ecc06eba386dfe8cffe4f3501c49bb4359e06a0e6"},
+    {file = "django-debug-toolbar-3.7.0.tar.gz", hash = "sha256:1e3acad24e3d351ba45c6fa2072e4164820307332a776b16c9f06d1f89503465"},
+    {file = "django_debug_toolbar-3.7.0-py3-none-any.whl", hash = "sha256:80de23066b624d3970fd296cf02d61988e5d56c31aa0dc4a428970b46e2883a8"},
 ]
 django-dotenv = [
     {file = "django-dotenv-1.4.2.tar.gz", hash = "sha256:3812bb0f4876cf31f902aad140f0645e120e51ee30eb7c40c22050f58a0e4adb"},
