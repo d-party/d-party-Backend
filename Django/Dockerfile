@@ -14,7 +14,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends graphviz cron
 
 # poetry環境構築
 RUN pip install --no-cache-dir poetry==1.2.0
+RUN poetry self update
 COPY pyproject.toml /usr/src/app
-RUN poetry install --no-root
+RUN poetry config virtualenvs.create false
+RUN poetry install --no-root && rm -rf ~/.cache/pypoetry/{cache,artifacts}
 # セキュリティ上必要なライブラリ
 RUN apt-get -y clean && rm -rf /var/lib/apt/lists/*

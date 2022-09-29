@@ -30,10 +30,10 @@ d-Party のバックエンド部分を担当するフォルダ
 ```bash
 docker-compose build --no-cache
 docker-compose up -d
-docker-compose exec django poetry run python manage.py makemigrations
-docker-compose exec django poetry run python manage.py makemigrations streamer
-docker-compose exec django poetry run python manage.py migrate
-docker-compose exec django poetry run python manage.py collectstatic
+docker-compose exec django python manage.py makemigrations
+docker-compose exec django python manage.py makemigrations streamer
+docker-compose exec django python manage.py migrate
+docker-compose exec django python manage.py collectstatic
 docker-compose down
 docker-compose up -d
 ```
@@ -57,7 +57,7 @@ settings.py で`debug = True`においてコンテナを起動させた場合に
 テストを実行したい場合、全てのコンテナを立ち上げてから、以下のコマンドを実行してください。
 
 ```bash
-docker-compose exec django poetry run pytest --cov --workers auto
+docker-compose exec django pytest --cov --workers auto
 ```
 
 ### ライセンスチェックを実行
@@ -65,7 +65,7 @@ docker-compose exec django poetry run pytest --cov --workers auto
 ライセンスチェックを実行したい場合、全てのコンテナを立ち上げてから、以下のコマンドを実行してください。
 
 ```bash
-docker-compose exec django poetry run pip-licenses
+docker-compose exec django pip-licenses
 ```
 
 ### 依存関係の可視化
@@ -73,7 +73,7 @@ docker-compose exec django poetry run pip-licenses
 依存関係の可視化を実行したい場合、全てのコンテナを立ち上げてから、以下のコマンドを実行してください。
 
 ```bash
-docker-compose exec django poetry run pipdeptree --graph-output dot > dependencies.dot
+docker-compose exec django pipdeptree --graph-output dot > dependencies.dot
 ```
 
 ### cronの標準出力/エラー出力を取得
