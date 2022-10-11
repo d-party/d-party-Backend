@@ -9,6 +9,11 @@ server {
             alias /static/;
     }
 
+    location /grafana/ {
+        proxy_set_header Host $http_host;
+        proxy_pass http://monitor_server;
+    }
+
     location /.well-known/ {
         alias /.well-known/;
     }
