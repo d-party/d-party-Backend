@@ -12,15 +12,19 @@ jobs:
       - name: run docker-compose
         run: |
           docker-compose up -d
+      - name: Sleep for 30 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: "30s"
       - name: init containers
         run: |
-          docker-compose exec -T django poetry run python manage.py makemigrations
-          docker-compose exec -T django poetry run python manage.py makemigrations streamer
-          docker-compose exec -T django poetry run python manage.py migrate
-          docker-compose exec -T django poetry run python manage.py collectstatic --noinput
+          docker-compose exec -T django python manage.py makemigrations;
+          docker-compose exec -T django python manage.py makemigrations streamer;
+          docker-compose exec -T django python manage.py migrate;
+          docker-compose exec -T django python manage.py collectstatic --noinput;
       - name: run pytest
         run: |
-          docker-compose exec -T django poetry run pytest --cov --cov-report=xml --workers auto
+          docker-compose exec -T django pytest --cov --cov-report=xml --workers auto
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:

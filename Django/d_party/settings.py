@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "axes",
     "request",
+    "django_prometheus",
     "streamer",
     "web",
     "api",
@@ -67,6 +68,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 MIDDLEWARE = [
+    "django_prometheus.middleware.PrometheusBeforeMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -77,6 +79,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "axes.middleware.AxesMiddleware",
     "debreach.middleware.RandomCommentMiddleware",
+    "django_prometheus.middleware.PrometheusAfterMiddleware",
 ]
 if DEBUG:
     MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]

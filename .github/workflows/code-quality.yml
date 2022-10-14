@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: true
       - name: Setup node/npm
@@ -34,11 +34,23 @@ jobs:
   hadolint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: hadolint/hadolint-action@v2.0.0
         with:
           dockerfile: ./Django/Dockerfile
-          ignore: "DL3008,SC2174,DL3009"
+          ignore: "DL3008,SC2174,DL3009,DL3059,SC3009"
+  dockle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          docker-compose build django
+      - name: Run Dockle
+        uses: erzz/dockle-action@v1
+        with:
+          image: d-party-backend_django
+          exit-code: 1
+          failure-threshold: fatal
   actionlint:
     runs-on: ubuntu-latest
     steps:
@@ -48,22 +60,26 @@ jobs:
     name: Shellcheck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@master
   yamllint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: yaml-lint
         uses: ibiqlik/action-yamllint@v3
-  nginx-conf-check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: run docker-compose
-        run: |
-          docker-compose up -d
-      - name: init containers
-        run: |
-          docker-compose exec -T nginx nginx -t
+  # nginx-conf-check:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: run docker-compose
+  #       run: |
+  #         docker-compose up -d
+  #     - name: Sleep for 30 seconds
+  #       uses: jakejarvis/wait-action@master
+  #       with:
+  #         time: "30s"
+  #     - name: init containers
+  #       run: |
+  #         docker-compose exec -T nginx nginx -t
