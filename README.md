@@ -36,9 +36,11 @@ docker-compose exec django python manage.py migrate
 docker-compose exec django python manage.py collectstatic
 docker-compose down
 docker-compose up -d
+docker-compose up nginx -d
 ```
 
 また 2 回目以降の起動であれば、`docker-compose up -d`のみで起動することができます。
+最後の`docker-compose up nginx -d`はリソースが十分でない場合に必要になるかもしれません。
 
 ## 開発
 
