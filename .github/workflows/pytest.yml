@@ -11,7 +11,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: run docker-compose
         run: |
-          docker-compose build
           docker-compose up -d
       - name: Sleep for 30 seconds
         uses: jakejarvis/wait-action@master
@@ -19,7 +18,7 @@ jobs:
           time: "30s"
       - name: init containers
         run: |
-          docker-compose exec -u root -T django python manage.py makemigrations;
+          docker-compose exec -T django python manage.py makemigrations;
           docker-compose exec -T django python manage.py makemigrations streamer;
           docker-compose exec -T django python manage.py migrate;
           docker-compose exec -T django python manage.py collectstatic --noinput;

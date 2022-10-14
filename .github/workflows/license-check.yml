@@ -12,12 +12,16 @@ jobs:
       - name: run docker-compose
         run: |
           docker-compose up -d
+      - name: Sleep for 30 seconds
+        uses: jakejarvis/wait-action@master
+        with:
+          time: "30s"
       - name: init containers
         run: |
-          docker-compose exec -T django poetry run python manage.py makemigrations;
-          docker-compose exec -T django poetry run python manage.py makemigrations streamer;
-          docker-compose exec -T django poetry run python manage.py migrate;
-          docker-compose exec -T django poetry run python manage.py collectstatic --noinput;
+          docker-compose exec -T django python manage.py makemigrations;
+          docker-compose exec -T django python manage.py makemigrations streamer;
+          docker-compose exec -T django python manage.py migrate;
+          docker-compose exec -T django python manage.py collectstatic --noinput;
       - name: check licenses
         run: >
           docker-compose exec -T django pip-licenses
