@@ -1,0 +1,32 @@
+.usage-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.usage-container>.row {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.step-title {
+    letter-spacing: 0.05em;
+    background: -webkit-linear-gradient(left, #ff6cfd, #61d0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    color: whitesmoke;
+    line-height: 1.8;
+}
+
+.step-discription {
+    font-size: medium;
+    font-weight: bold;
+    color: #9A9A9B;
+    line-height: 1.8;
+}
+
+.branch-arrow {
+    color: dimgray;
+    font-size: 2.5em;
+    text-align: center;
+}

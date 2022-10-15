@@ -1,16 +1,91 @@
 {% extends "layout.html" %} {% load static %}
-{%block stylesheet %} <script src="{% static "web/js/index.js" %}"></script> {% endblock %} 
+{%block stylesheet %} <script src="{% static "web/js/index.js" %}"></script> 
+<link rel="stylesheet" href="{% static "web/css/usage.css" %}" />
+{% endblock %} 
 {% block content %}
-<!-- Flickity HTML init -->
-<div class="carousel"
-  data-flickity='{ "imagesLoaded": true, "percentPosition": false, "autoPlay": 5000}'>
-    <img src="{% static "web/img/usage/step1_login.png" %}" alt="step1"  class="carousel-image"/>
-    <img src="{% static "web/img/usage/step2_pin.png" %}" alt="step2"  class="carousel-image"/>
-    <img src="{% static "web/img/usage/step3_setting.png" %}" alt="step3"  class="carousel-image"/>
-    <img src="{% static "web/img/usage/step4_anime_list.png" %}" alt="step4"  class="carousel-image"/>
-    <img src="{% static "web/img/usage/step5_anime_list.png" %}" alt="step5"  class="carousel-image"/>
-    <img src="{% static "web/img/usage/step6_room.png" %}" alt="step6"  class="carousel-image"/>
-    <img src="{% static "web/img/usage/step7_share.png" %}" alt="step7"  class="carousel-image"/>
-    <img src="{% static "web/img/usage/step8_endcard.png" %}" alt="step8"  class="carousel-image"/>
+<div class="container-xxl usage-container">
+
+      <div class="row">
+        <div class="col-8">
+          <p class="step-title h2">PCにGoogle Chromeをインストール</p>
+          <p class="step-discription">
+          まずはd-partyが唯一対応しているブラウザ『Google Chrome』をインストールしてください。
+          Google Chromeの拡張機能は残念ながら、スマートフォン版ではまだ利用できません。
+          そのため、PCにGoogle Chromeをインストールしましょう。
+          ちなみに、Netflixやhuluでウォッチパーティーをしたい場合は、Telepartyなどのサードパーティー製の拡張機能を使うと出来るようになります。</p>
+        </div>
+        <div class="col-4 d-flex align-items-center">
+        <button type="button" class="glow-on-hover" onclick="window.open('https://chrome.google.com/webstore/detail/d-party/ibmlcfpijglpfbfgaleaeooebgdgcbpc?hl=ja','_blank');"><i class="bi bi-google"></i></i> Google Chrome</button>
+        </div>
+      </div>
+
+      <div class="row  branch-arrow">
+            <i class="bi bi-caret-down"></i>
+      </div>
+      
+      <div class="row">
+        <div class="col-8 order-2">
+          <p class="step-title h2">dアニメストアを契約</p>
+          <p class="step-discription">もしもまだであれば、dアニメストアのアカウントを作成してください。dアニメストア for Prime Videoやdアニメストア ニコニコ支店では使えません。本家本元のdアニメストアのアカウントを作成してください。</p>
+        </div>
+        <div class="col-4 d-flex align-items-center">
+
+        </div>
+      </div>
+
+      <div class="row  branch-arrow">
+            <i class="bi bi-caret-down-fill"></i>
+      </div>
+
+      <div class="row">
+        <div class="col-8">
+          <p class="step-title h2">dアニメストアにログイン</p>
+          <p class="step-discription">dアニメストアにログインしてください。特に久しぶりの人はログインが切れてしまっていることがあります。念のためトップページにからログインできることを確認しましょう。</p>
+        </div>
+        <div class="col-4 d-flex align-items-center">
+            <img src="{% static "web/img/usage/step3-login.png" %}" class="img-fluid"/>
+        </div>
+      </div>
+
+      <div class="row  branch-arrow">
+            <i class="bi bi-caret-down"></i>
+      </div>
+
+      <div class="row">
+        <div class="col-8 order-2 ">
+          <p class="step-title h2">d-partyをインストール</p>
+          <p class="step-discription">
+          Chrome ウェブストアからd-partyをインストールしましょう。
+          インストールはすぐに完了し、再起動なども必要ありません。
+          また、d-partyのアップデートは自動的に行われます。
+          ちなみにd-partyには『別タブで動画を開く』など、dアニメストアをちょっと便利に使える機能も入っています。          </p>
+        </div>
+        <div class="col-4 d-flex align-items-center">
+        <button type="button" class="glow-on-hover" onclick="window.open('https://chrome.google.com/webstore/detail/d-party/ibmlcfpijglpfbfgaleaeooebgdgcbpc?hl=ja','_blank');"><i class="bi bi-download"></i> 今すぐインストール</button>
+        </div>
+      </div>
+
+      <div class="row  branch-arrow">
+            <i class="bi bi-caret-down-fill"></i>
+      </div>
+
+      <div class="row">
+        <div class="col-8">
+          <p class="step-title h2">d-partyの設定を行う</p>
+          <p class="step-discription">
+          Chrome ウェブストアからd-partyをインストールしましょう。
+          インストールはすぐに完了し、再起動なども必要ありません。
+          また、d-partyのアップデートは自動的に行われます。
+          ちなみにd-partyには『別タブで動画を開く』など、dアニメストアをちょっと便利に使える機能も入っています。          </p>
+        </div>
+        <div class="col-4 d-flex align-items-center">
+          <img src="{% static "web/img/usage/step6-setting.png" %}" class="img-fluid"/>
+        </div>
+      </div>
+
+      <div class="row  branch-arrow">
+            <i class="bi bi-caret-down"></i>
+      </div>
+
 </div>
 {% endblock %}
