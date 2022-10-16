@@ -1,6 +1,7 @@
 {% extends "layout.html" %} {% load static %}
 {%block stylesheet %} <script src="{% static "web/js/index.js" %}"></script> 
 <link rel="stylesheet" href="{% static "web/css/usage.css" %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 {% endblock %} 
 {% block content %}
 <div class="container-xxl usage-container">
@@ -29,7 +30,9 @@
           <p class="step-discription">もしもまだであれば、dアニメストアのアカウントを作成してください。dアニメストア for Prime Videoやdアニメストア ニコニコ支店では使えません。本家本元のdアニメストアのアカウントを作成してください。</p>
         </div>
         <div class="col-4 d-flex align-items-center">
-
+        <i class="fa-solid fa-user-tie d-animestore-tie-user"></i>
+        <i class="fa-solid fa-handshake d-animestore-shake-hand"></i>
+        <img src="{% static "web/logo/d-anime.png" %}" class="img-fluid d-animestore-logo"/>
         </div>
       </div>
 
@@ -85,6 +88,22 @@
 
       <div class="row  branch-arrow">
             <i class="bi bi-caret-down"></i>
+      </div>
+      <div class="row">
+        <div class="col-8">
+          <p class="step-title h2 order-2">一緒に視聴したいアニメのページに移動</p>
+          <p class="step-discription">
+          次に、一緒に視聴したいアニメのページに移動します。すると<span class="material-symbols-outlined">
+celebration
+</span>と<i class="fa-solid fa-play"></i>
+          が各話ごとに表示されているはずです。<span class="material-symbols-outlined">
+celebration
+</span>をクリックしてプレイヤーを別タブで表示しましょう。
+          </p>
+        </div>
+        <div class="col-4 d-flex align-items-center">
+         
+        </div>
       </div>
 
 </div>

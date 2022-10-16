@@ -30,3 +30,19 @@
     font-size: 2.5em;
     text-align: center;
 }
+
+.d-animestore-shake-hand {
+    color: whitesmoke;
+    font-size: 3em;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.d-animestore-tie-user {
+    color: whitesmoke;
+    font-size: 4.5em;
+}
+
+.d-animestore-logo {
+    height: 90px;
+}
