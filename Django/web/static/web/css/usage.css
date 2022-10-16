@@ -50,3 +50,27 @@
 .chrome-link {
     margin-right: 10px;
 }
+
+.sidebar_copy_link {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background-color: rgb(19, 47, 76);
+    display: flex;
+    font-size: smaller;
+    color: rgb(178, 186, 194);
+    cursor: pointer;
+    padding: 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(38, 93, 151);
+    border-image: initial;
+    border-radius: 10px;
+}
+
+.sidebar_link {
+    max-width: 165px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0px;
+}
