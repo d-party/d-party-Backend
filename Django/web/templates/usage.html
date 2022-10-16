@@ -16,7 +16,7 @@
           ちなみに、Netflixやhuluでウォッチパーティーをしたい場合は、Telepartyなどのサードパーティー製の拡張機能を使うと出来るようになります。</p>
         </div>
         <div class="col-4 d-flex align-items-center">
-        <button type="button" class="glow-on-hover" onclick="window.open('https://chrome.google.com/webstore/detail/d-party/ibmlcfpijglpfbfgaleaeooebgdgcbpc?hl=ja','_blank');"><i class="bi bi-google"></i></i> Google Chrome</button>
+        <button type="button" class="btn btn-primary btn-lg mx-auto" onclick="window.open('https://www.google.com/intl/ja_jp/chrome/','_blank');"><i class="bi bi-box-arrow-up-left chrome-link"></i>Google Chrome</button>
         </div>
       </div>
 
@@ -27,12 +27,14 @@
       <div class="row">
         <div class="col-8 order-2">
           <p class="step-title h2">dアニメストアを契約</p>
-          <p class="step-discription">もしもまだであれば、dアニメストアのアカウントを作成してください。dアニメストア for Prime Videoやdアニメストア ニコニコ支店では使えません。本家本元のdアニメストアのアカウントを作成してください。</p>
+          <p class="step-discription">もしもまだであれば、dアニメストアのアカウントを作成してください。dアニメストア for Prime Videoやdアニメストア ニコニコ支店では使えません。本家本元のdアニメストアのアカウントを作成してサブスクリプションを契約してください。</p>
         </div>
         <div class="col-4 d-flex align-items-center">
-        <i class="fa-solid fa-user-tie d-animestore-tie-user"></i>
-        <i class="fa-solid fa-handshake d-animestore-shake-hand"></i>
-        <img src="{% static "web/logo/d-anime.png" %}" class="img-fluid d-animestore-logo"/>
+        <span class="mx-auto d-flex align-items-center">
+          <i class="fa-solid fa-user-tie d-animestore-tie-user"></i>
+          <i class="fa-solid fa-handshake d-animestore-shake-hand"></i>
+          <img src="{% static "web/logo/d-anime.png" %}" class="img-fluid d-animestore-logo"></img>
+        </span>
         </div>
       </div>
 
@@ -61,10 +63,12 @@
           Chrome ウェブストアからd-partyをインストールしましょう。
           インストールはすぐに完了し、再起動なども必要ありません。
           また、d-partyのアップデートは自動的に行われます。
-          ちなみにd-partyには『別タブで動画を開く』など、dアニメストアをちょっと便利に使える機能も入っています。          </p>
+          ちなみにd-partyには『別タブで動画を開く』など、dアニメストアをちょっと便利に使える機能も入っています。
+          ひとまず、何かのインストールはこれで終了です。
+          </p>
         </div>
         <div class="col-4 d-flex align-items-center">
-        <button type="button" class="glow-on-hover" onclick="window.open('https://chrome.google.com/webstore/detail/d-party/ibmlcfpijglpfbfgaleaeooebgdgcbpc?hl=ja','_blank');"><i class="bi bi-download"></i> 今すぐインストール</button>
+        <button type="button" class="glow-on-hover mx-auto" onclick="window.open('https://chrome.google.com/webstore/detail/d-party/ibmlcfpijglpfbfgaleaeooebgdgcbpc?hl=ja','_blank');"><i class="bi bi-download"></i> 今すぐインストール</button>
         </div>
       </div>
 
@@ -76,13 +80,13 @@
         <div class="col-8">
           <p class="step-title h2">d-partyの設定を行う</p>
           <p class="step-discription">
-          Chrome ウェブストアからd-partyをインストールしましょう。
-          インストールはすぐに完了し、再起動なども必要ありません。
-          また、d-partyのアップデートは自動的に行われます。
-          ちなみにd-partyには『別タブで動画を開く』など、dアニメストアをちょっと便利に使える機能も入っています。          </p>
+          デフォルト設定でも使用可能ですが、d-partyの設定を行いましょう。
+          とりあえず名前だけでもを設定しておくと便利かもしれません。
+          この名前はルーム入室時に適用されます。匿名でルームに入りたい場合はそのままにしておきましょう。
+          </p>
         </div>
         <div class="col-4 d-flex align-items-center">
-          <img src="{% static "web/img/usage/step6-setting.png" %}" class="img-fluid"/>
+        
         </div>
       </div>
 
@@ -90,19 +94,37 @@
             <i class="bi bi-caret-down"></i>
       </div>
       <div class="row">
-        <div class="col-8">
-          <p class="step-title h2 order-2">一緒に視聴したいアニメのページに移動</p>
+        <div class="col-8 order-2">
+          <p class="step-title h2">一緒に視聴したいアニメのページに移動</p>
           <p class="step-discription">
-          次に、一緒に視聴したいアニメのページに移動します。すると<span class="material-symbols-outlined">
-celebration
-</span>と<i class="fa-solid fa-play"></i>
-          が各話ごとに表示されているはずです。<span class="material-symbols-outlined">
-celebration
-</span>をクリックしてプレイヤーを別タブで表示しましょう。
+          次に、一緒に視聴したいアニメのページに移動します。
+          すると<span class="material-symbols-outlined">celebration</span>と<i class="fa-solid fa-play"></i>
+          が各話ごとに表示されているはずです。
+          <span class="material-symbols-outlined">celebration</span>
+          をクリックしてプレイヤーを別タブで表示しましょう。
+          すると普段のプレイヤーの右横にd-partyのサイドバーが表示されます。
           </p>
         </div>
         <div class="col-4 d-flex align-items-center">
-         
+         <img src="{% static "web/img/usage/step6-anime-discription.png" %}" class="img-fluid"/>
+        </div>
+      </div>
+
+      <div class="row  branch-arrow">
+            <i class="bi bi-caret-down-fill"></i>
+      </div>
+
+      <div class="row">
+        <div class="col-8">
+          <p class="step-title h2">ルームのリンクを共有する</p>
+          <p class="step-discription">
+          discordやメールを使って、ルームのリンクを共有しましょう。
+          Twitterでつぶやくこともできます。
+          このリンクは、完全にランダムで生成されており、ルーム内の人がい無くなれば自動的に使えなくなります。
+          そのため、第三者が勝手にルームに参加することはありません。
+          </p>
+        </div>
+        <div class="col-4 d-flex align-items-center">
         </div>
       </div>
 

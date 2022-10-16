@@ -40,9 +40,13 @@
 
 .d-animestore-tie-user {
     color: whitesmoke;
-    font-size: 4.5em;
+    font-size: 5em;
 }
 
 .d-animestore-logo {
     height: 90px;
+}
+
+.chrome-link {
+    margin-right: 10px;
 }
