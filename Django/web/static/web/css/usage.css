@@ -52,8 +52,6 @@
 }
 
 .sidebar_copy_link {
-    margin-top: 25px;
-    margin-bottom: 25px;
     background-color: rgb(19, 47, 76);
     display: flex;
     font-size: smaller;
@@ -73,4 +71,48 @@
     white-space: nowrap;
     overflow: hidden;
     margin: 0px;
+}
+
+.sns-icons {
+    font-size: 5em;
+    color: rgb(178, 186, 194);
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+.sns-icons.fa-discord {
+    color: #4E62F0;
+}
+
+.sns-icons.fa-twitter {
+    color: #1DA1F2;
+}
+
+.sns-icons.fa-envelopes-bulk {
+    color: #d5c859;
+}
+
+
+.sns-arrow-icons {
+    font-size: xx-large;
+    color: rgb(178, 186, 194);
+}
+
+.end-title {
+    text-align: center;
+}
+
+.end-discription {
+    text-align: center;
+}
+
+.end-party-cracker-block {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.end-party-cracker {
+    font-size: 5em !important;
+    color: rgb(178, 186, 194);
 }

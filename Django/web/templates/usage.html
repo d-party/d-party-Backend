@@ -118,15 +118,22 @@
         <div class="col-8">
           <p class="step-title h2">ルームのリンクを共有する</p>
           <p class="step-discription">
-          discordやメールを使って、ルームのリンクを共有しましょう。
-          Twitterでつぶやくこともできます。
+          ルームを作成すると、サイドバーにルームリンクが生成されます。
+          discordやtwitter、メールを使って、ルームのリンクを参加者に共有しましょう。
           このリンクは、完全にランダムで生成されており、ルーム内の人がい無くなれば自動的に使えなくなります。
           そのため、第三者が勝手にルームに参加することはありません。
+          受け取ったユーザーは、リンクをクリックすると自動的にプレイヤーが開かれます。
+          そのため、事前にd-partyのインストールまで行っている必要があります。
           </p>
         </div>
-        <div class="col-4 d-flex align-items-center">
-          <div class="sidebar_copy_link share_content" style="">
+        <div class="col-4 d-flex align-items-center mx-auto">
+          <div class="mx-auto">
+          {% comment %} <div class="sidebar_copy_link share_content" style="">
             <p class="sidebar_link share_content" style="">https://d-party.net/animestore/lobby</p><a class="material-icons sidebar_copy_icons share_content" style="">content_copy</a>
+          </div> {% endcomment %}
+            <i class="fa-brands fa-discord sns-icons"></i>
+            <i class="fa-brands fa-twitter sns-icons"></i>
+            <i class="fa-solid fa-envelopes-bulk  sns-icons"></i>
           </div>
         </div>
       </div>
@@ -136,11 +143,14 @@
       </div>
 
       <div class="row">
-        <div class="col-12">
-          <p class="step-title h2">みんなでパーティーを楽しみましょう</p>
-          <p class="step-discription">
-          全員がルームにそろったらパーティーを楽しみましょう。
+        <div class="col-8 mx-auto">
+          <p class="step-title h2 end-title">みんなでパーティーを楽しみましょう</p>
+          <p class="step-discription end-discription">
+          全員がルームにそろったら動画の再生を開始してパーティーを楽しみましょう！
           </p>
+          <div class="end-party-cracker-block">
+            <span class="end-party-cracker">🎉</span>
+          </div>
       </div>
 
 </div>
