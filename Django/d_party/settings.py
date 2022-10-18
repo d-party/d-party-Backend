@@ -191,6 +191,11 @@ JAZZMIN_SETTINGS = {
             "url": "/admin/chart",
             "new_window": True,
         },
+        {
+            "name": "grafana",
+            "url": "/grafana/",
+            "new_window": True,
+        },
         {"model": "auth.User"},
         {"model": "streamer.AnimeRoom"},
         {"model": "streamer.TVRoom"},
