@@ -7,7 +7,7 @@
 <div class="container-xxl usage-container">
 
       <div class="row">
-        <div class="col-8">
+        <div class="col-md-8">
           <p class="step-title h2">PCにGoogle Chromeをインストール</p>
           <p class="step-discription">
           まずはd-partyが唯一対応しているブラウザ『Google Chrome』をインストールしてください。
@@ -15,7 +15,7 @@
           そのため、PCにGoogle Chromeをインストールしましょう。
           ちなみに、Netflixやhuluでウォッチパーティーをしたい場合は、Telepartyなどのサードパーティー製の拡張機能を使うと出来るようになります。</p>
         </div>
-        <div class="col-4 d-flex align-items-center">
+        <div class="col-md-4 d-flex align-items-center">
         <button type="button" class="btn btn-primary btn-lg mx-auto" onclick="window.open('https://www.google.com/intl/ja_jp/chrome/','_blank');"><i class="bi bi-box-arrow-up-left chrome-link"></i>Google Chrome</button>
         </div>
       </div>
@@ -25,11 +25,11 @@
       </div>
       
       <div class="row">
-        <div class="col-8 order-2">
+        <div class="col-md-8 order-md-2">
           <p class="step-title h2">dアニメストアを契約</p>
           <p class="step-discription">もしもまだであれば、dアニメストアのアカウントを作成してください。dアニメストア for Prime Videoやdアニメストア ニコニコ支店では使えません。本家本元のdアニメストアのアカウントを作成してサブスクリプションを契約してください。</p>
         </div>
-        <div class="col-4 d-flex align-items-center">
+        <div class="col-md-4 d-flex align-items-center">
         <span class="mx-auto d-flex align-items-center">
           <i class="fa-solid fa-user-tie d-animestore-tie-user"></i>
           <i class="fa-solid fa-handshake d-animestore-shake-hand"></i>
@@ -43,11 +43,11 @@
       </div>
 
       <div class="row">
-        <div class="col-8">
+        <div class="col-md-8">
           <p class="step-title h2">dアニメストアにログイン</p>
           <p class="step-discription">dアニメストアにログインしてください。特に久しぶりの人はログインが切れてしまっていることがあります。念のためトップページにからログインできることを確認しましょう。</p>
         </div>
-        <div class="col-4 d-flex align-items-center">
+        <div class="col-md-4 d-flex align-items-center">
             <img src="{% static "web/img/usage/step3-login.png" %}" class="img-fluid"/>
         </div>
       </div>
@@ -57,7 +57,7 @@
       </div>
 
       <div class="row">
-        <div class="col-8 order-2 ">
+        <div class="col-md-8 order-md-2 ">
           <p class="step-title h2">d-partyをインストール</p>
           <p class="step-discription">
           Chrome ウェブストアからd-partyをインストールしましょう。
@@ -67,7 +67,7 @@
           ひとまず、何かのインストールはこれで終了です。
           </p>
         </div>
-        <div class="col-4 d-flex align-items-center">
+        <div class="col-md-4 d-flex align-items-center">
         <button type="button" class="glow-on-hover mx-auto" onclick="window.open('https://chrome.google.com/webstore/detail/d-party/ibmlcfpijglpfbfgaleaeooebgdgcbpc?hl=ja','_blank');"><i class="bi bi-download"></i> 今すぐインストール</button>
         </div>
       </div>
@@ -77,7 +77,7 @@
       </div>
 
       <div class="row">
-        <div class="col-8">
+        <div class="col-md-8">
           <p class="step-title h2">d-partyの設定を行う</p>
           <p class="step-discription">
           デフォルト設定でも使用可能ですが、d-partyの設定を行いましょう。
@@ -85,7 +85,7 @@
           この名前はルーム入室時に適用されます。匿名でルームに入りたい場合はそのままにしておきましょう。
           </p>
         </div>
-        <div class="col-4 d-flex align-items-center">
+        <div class="col-md-4 d-flex align-items-center">
         
         </div>
       </div>
@@ -94,7 +94,7 @@
             <i class="bi bi-caret-down"></i>
       </div>
       <div class="row">
-        <div class="col-8 order-2">
+        <div class="col-md-8 order-md-2">
           <p class="step-title h2">一緒に視聴したいアニメのページに移動</p>
           <p class="step-discription">
           次に、一緒に視聴したいアニメのページに移動します。
@@ -105,7 +105,7 @@
           すると普段のプレイヤーの右横にd-partyのサイドバーが表示されます。
           </p>
         </div>
-        <div class="col-4 d-flex align-items-center">
+        <div class="col-md-4 d-flex align-items-center">
          <img src="{% static "web/img/usage/step6-anime-discription.png" %}" class="img-fluid"/>
         </div>
       </div>
@@ -115,7 +115,7 @@
       </div>
 
       <div class="row">
-        <div class="col-8">
+        <div class="col-md-8">
           <p class="step-title h2">ルームのリンクを共有する</p>
           <p class="step-discription">
           ルームを作成すると、サイドバーにルームリンクが生成されます。
@@ -126,7 +126,7 @@
           そのため、事前にd-partyのインストールまで行っている必要があります。
           </p>
         </div>
-        <div class="col-4 d-flex align-items-center mx-auto">
+        <div class="col-md-4 d-flex align-items-center mx-auto">
           <div class="mx-auto">
           {% comment %} <div class="sidebar_copy_link share_content" style="">
             <p class="sidebar_link share_content" style="">https://d-party.net/animestore/lobby</p><a class="material-icons sidebar_copy_icons share_content" style="">content_copy</a>
@@ -143,7 +143,7 @@
       </div>
 
       <div class="row">
-        <div class="col-8 mx-auto">
+        <div class="col-md-8 mx-auto">
           <p class="step-title h2 end-title">みんなでパーティーを楽しみましょう</p>
           <p class="step-discription end-discription">
           全員がルームにそろったら動画の再生を開始してパーティーを楽しみましょう！
