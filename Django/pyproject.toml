@@ -33,6 +33,7 @@ pydot = "^1.4.2"
 django-dynamic-shields = "^0.2.1"
 django-debreach = "^2.1.0"
 django-prometheus = "^2.2.0"
+django-cryptography = "^1.1"
 
 
 [tool.poetry.dev-dependencies]

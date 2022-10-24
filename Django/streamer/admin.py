@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AnimeRoom, AnimeUser, AnimeReaction, TVRoom
+from .models import AnimeRoom, AnimeUser, AnimeReaction
 from django_boost.admin import LogicalDeletionModelAdmin
 
 # Register your models here.
@@ -17,9 +17,4 @@ class AnimeUserAdmin(LogicalDeletionModelAdmin):
 
 @admin.register(AnimeReaction)
 class AnimeReactionAdmin(LogicalDeletionModelAdmin):
-    pass
-
-
-@admin.register(TVRoom)
-class TVRoomAdmin(LogicalDeletionModelAdmin):
     pass
