@@ -636,11 +636,11 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "pip-licenses"
-version = "3.5.4"
+version = "3.5.5"
 description = "Dump the software license list of Python packages installed with pip."
 category = "dev"
 optional = false
-python-versions = "~=3.6"
+python-versions = "~=3.7"
 
 [package.dependencies]
 PTable = "*"
@@ -1200,7 +1200,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "da7fa36ccaf850e66c5bdccd51ef609e7a2e38951b28e2c1a9365bd4e8c2b873"
+content-hash = "a0f7761ef079a29fe330ae510215653c63b6a820402c8cdaa2d92317ead2ab52"
 
 [metadata.files]
 anyio = [
@@ -1750,8 +1750,8 @@ pathspec = [
     {file = "pathspec-0.10.1.tar.gz", hash = "sha256:7ace6161b621d31e7902eb6b5ae148d12cfd23f4a249b9ffb6b9fee12084323d"},
 ]
 pip-licenses = [
-    {file = "pip-licenses-3.5.4.tar.gz", hash = "sha256:a8b4dabe2b83901f9ac876afc47b57cff9a5ebe19a6d90c0b2579fa8cf2db176"},
-    {file = "pip_licenses-3.5.4-py3-none-any.whl", hash = "sha256:5e23593c670b8db616b627c68729482a65bb88498eefd8df337762fdaf7936a8"},
+    {file = "pip-licenses-3.5.5.tar.gz", hash = "sha256:748cfd7aca6e05032f9fa85691301295f4d943e87955be6914ca49abe3c075a4"},
+    {file = "pip_licenses-3.5.5-py3-none-any.whl", hash = "sha256:6129c116bab2b202d90d6e3a96092df4ad84c0c4d57bb70192fc03f8bf06d181"},
 ]
 pipdeptree = [
     {file = "pipdeptree-2.3.1-py3-none-any.whl", hash = "sha256:fc0ffc6fd69f6f19e68bfd7722e5b4f66cc2b49a1be42ac7a3e8b4fd9f469370"},
