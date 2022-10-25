@@ -103,8 +103,6 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "d_party.wsgi.application"
-
 # redis
 CHANNEL_LAYERS = {
     "default": {
