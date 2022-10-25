@@ -199,7 +199,6 @@ JAZZMIN_SETTINGS = {
         },
         {"model": "auth.User"},
         {"model": "streamer.AnimeRoom"},
-        {"model": "streamer.TVRoom"},
     ],
     #############
     # User Menu #
