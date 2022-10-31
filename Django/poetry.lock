@@ -675,7 +675,7 @@ test = ["docutils", "pytest-cov", "pytest-pycodestyle", "pytest-runner"]
 
 [[package]]
 name = "pipdeptree"
-version = "2.3.1"
+version = "2.3.3"
 description = "Command line utility to show dependency tree of packages."
 category = "dev"
 optional = false
@@ -683,7 +683,7 @@ python-versions = ">=3.7"
 
 [package.extras]
 graphviz = ["graphviz (>=0.20.1)"]
-test = ["covdefaults (>=2.2)", "diff-cover (>=6.5.1)", "pip (>=22.2.2)", "pytest (>=7.1.3)", "pytest-cov (>=3)", "pytest-mock (>=3.8.2)", "virtualenv (>=20.16.5,<21)"]
+test = ["covdefaults (>=2.2)", "diff-cover (>=7.0.1)", "pip (>=22.3)", "pytest (>=7.2)", "pytest-cov (>=4)", "pytest-mock (>=3.10)", "virtualenv (>=20.16.6,<21)"]
 
 [[package]]
 name = "platformdirs"
@@ -1225,7 +1225,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "1cbc5c366718cee813bc2d9f419fac2f7cc37abf31f7db80282b21db4e9c727d"
+content-hash = "38e5794e53193a72bcd001d8ecc301178d0920e5d07517599c8a75e442442ee0"
 
 [metadata.files]
 anyio = [
@@ -1786,8 +1786,8 @@ pip-licenses = [
     {file = "pip_licenses-3.5.5-py3-none-any.whl", hash = "sha256:6129c116bab2b202d90d6e3a96092df4ad84c0c4d57bb70192fc03f8bf06d181"},
 ]
 pipdeptree = [
-    {file = "pipdeptree-2.3.1-py3-none-any.whl", hash = "sha256:fc0ffc6fd69f6f19e68bfd7722e5b4f66cc2b49a1be42ac7a3e8b4fd9f469370"},
-    {file = "pipdeptree-2.3.1.tar.gz", hash = "sha256:30699521e1c5861b08d29d92398f67e9a5d7f613092257fff2a8bde3c948e05b"},
+    {file = "pipdeptree-2.3.3-py3-none-any.whl", hash = "sha256:8c012fd8ee79083806db9d1410a44648f71dba11364719aa40ed718f4762e964"},
+    {file = "pipdeptree-2.3.3.tar.gz", hash = "sha256:9d666f77ff1b9528d01b3d98594096484f56de70d752abe22f13e681be239bd8"},
 ]
 platformdirs = [
     {file = "platformdirs-2.5.2-py3-none-any.whl", hash = "sha256:027d8e83a2d7de06bbac4e5ef7e023c02b863d7ea5d079477e722bb41ab25788"},
