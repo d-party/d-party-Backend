@@ -15,7 +15,7 @@ mysqlclient = "^2.1.1"
 channels-redis = "^4.0.0"
 uvicorn = {extras = ["standard"], version = "^0.19.0"}
 django-debug-toolbar = "^3.7.0"
-django-jazzmin = "^2.4.0"
+django-jazzmin = "^2.6.0"
 pydantic = "^1.10.2"
 django-boost = "^2.1"
 djangorestframework = "^3.14.0"
