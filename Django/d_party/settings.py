@@ -76,10 +76,12 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "request.middleware.RequestMiddleware",
+    "htmlmin.middleware.HtmlMinifyMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "axes.middleware.AxesMiddleware",
     "debreach.middleware.RandomCommentMiddleware",
+    "htmlmin.middleware.MarkRequestMiddleware"
     "django_prometheus.middleware.PrometheusAfterMiddleware",
 ]
 if DEBUG:
@@ -294,6 +296,11 @@ if DEBUG:
 
 # django-extensions
 RUNSERVERPLUS_SERVER_ADDRESS_PORT = "0.0.0.0:8000"
+
+# django-htmlmin
+
+EXCLUDE_FROM_MINIFYING = ("^admin/",)
+EXCLUDE_TAGS = set(["pre", "script", "textarea"])
 
 # django-crontab
 

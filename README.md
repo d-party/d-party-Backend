@@ -59,7 +59,7 @@ settings.py で`debug = True`においてコンテナを起動させた場合に
 テストを実行したい場合、全てのコンテナを立ち上げてから、以下のコマンドを実行してください。
 
 ```bash
-docker-compose exec django pytest --cov --workers auto
+docker-compose exec django pytest --cov
 ```
 
 ### ライセンスチェックを実行
