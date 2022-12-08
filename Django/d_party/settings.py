@@ -76,12 +76,10 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "request.middleware.RequestMiddleware",
-    "htmlmin.middleware.HtmlMinifyMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "axes.middleware.AxesMiddleware",
     "debreach.middleware.RandomCommentMiddleware",
-    "htmlmin.middleware.MarkRequestMiddleware"
     "django_prometheus.middleware.PrometheusAfterMiddleware",
 ]
 if DEBUG:
