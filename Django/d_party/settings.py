@@ -28,7 +28,7 @@ CRYPTOGRAPHY_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ["DEBUG"] == "1"
 
-ALLOWED_HOSTS = [os.environ["MY_DOMAIN"], "www." + os.environ["MY_DOMAIN"]]
+ALLOWED_HOSTS = [os.environ["MY_DOMAIN"], "www." + os.environ["MY_DOMAIN"], "django"]
 if DEBUG:
     ALLOWED_HOSTS += ["*"]
 CSRF_TRUSTED_ORIGINS = [
