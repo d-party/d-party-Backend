@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.11
 
 # 作業ディレクトリを設定
 WORKDIR /usr/src/app
@@ -18,6 +18,6 @@ RUN apt-get update && \
 # poetry環境構築
 RUN pip install --no-cache-dir poetry==1.2.0
 RUN poetry self update
-COPY pyproject.toml /usr/src/app
+COPY pyproject.toml poetry.lock /usr/src/app/
 RUN poetry config virtualenvs.create false
 RUN poetry install --no-root && rm -rf ~/.cache/pypoetry/{cache,artifacts}

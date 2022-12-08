@@ -295,6 +295,11 @@ if DEBUG:
 # django-extensions
 RUNSERVERPLUS_SERVER_ADDRESS_PORT = "0.0.0.0:8000"
 
+# django-htmlmin
+
+EXCLUDE_FROM_MINIFYING = ("^admin/",)
+EXCLUDE_TAGS = set(["pre", "script", "textarea"])
+
 # django-crontab
 
 if DEBUG:
