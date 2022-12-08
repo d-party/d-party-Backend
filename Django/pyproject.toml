@@ -45,12 +45,10 @@ factory-boy = "^3.2.1"
 pytest-cov = "^4.0.0"
 pytest-profiling = "^1.7.0"
 lizard = "^1.17.10"
-pip-licenses = "^3.5.4"
+pip-licenses = "^4.0.3"
 pipdeptree = "^2.3.1"
 graphviz = "^0.20"
 
-[tool.poetry.group.dev.dependencies]
-pip-licenses = "^4.0.3"
 
 [build-system]
 requires = ["poetry-core"]
