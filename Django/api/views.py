@@ -16,6 +16,7 @@ from rest_framework.permissions import IsAdminUser, AllowAny
 from rest_framework import status
 from distutils.version import LooseVersion, StrictVersion
 
+
 # Create your views here.
 class ChromeExtensionVersionCheckAPI(APIView):
     """chromeの拡張機能のバージョンをチェックし、
