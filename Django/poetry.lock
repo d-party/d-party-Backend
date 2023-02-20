@@ -1217,19 +1217,19 @@ test = ["docutils", "mypy", "pytest-cov", "pytest-pycodestyle", "pytest-runner"]
 
 [[package]]
 name = "pipdeptree"
-version = "2.3.3"
+version = "2.5.0"
 description = "Command line utility to show dependency tree of packages."
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pipdeptree-2.3.3-py3-none-any.whl", hash = "sha256:8c012fd8ee79083806db9d1410a44648f71dba11364719aa40ed718f4762e964"},
-    {file = "pipdeptree-2.3.3.tar.gz", hash = "sha256:9d666f77ff1b9528d01b3d98594096484f56de70d752abe22f13e681be239bd8"},
+    {file = "pipdeptree-2.5.0-py3-none-any.whl", hash = "sha256:cd167f38264c44ed41d3de0e8d7f47d4fbcbe6592587266e0219b8c056416c6b"},
+    {file = "pipdeptree-2.5.0.tar.gz", hash = "sha256:ef17672a0ec47ae97ae9d50f98eabe209609ffd08e8b4abdc2e8e20bf499b151"},
 ]
 
 [package.extras]
 graphviz = ["graphviz (>=0.20.1)"]
-test = ["covdefaults (>=2.2)", "diff-cover (>=7.0.1)", "pip (>=22.3)", "pytest (>=7.2)", "pytest-cov (>=4)", "pytest-mock (>=3.10)", "virtualenv (>=20.16.6,<21)"]
+test = ["covdefaults (>=2.2.2)", "diff-cover (>=7.4)", "pip (>=23)", "pytest (>=7.2.1)", "pytest-cov (>=4)", "pytest-mock (>=3.10)", "virtualenv (>=20.17.1,<21)"]
 
 [[package]]
 name = "platformdirs"
@@ -2125,4 +2125,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "154eb1b0a71172c87dee3691cb66300a4cb3792267b086ae5572f52f66e6c928"
+content-hash = "7ace4aa106747e40aedbd5c0cdda58e81732b4969d91f81122881110949b77d5"
