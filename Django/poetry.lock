@@ -679,14 +679,14 @@ prometheus-client = ">=0.7"
 
 [[package]]
 name = "django-request"
-version = "1.6.1"
+version = "1.6.2"
 description = "django-request is a statistics module for django. It stores requests in a database for admins to see, it can also be used to get statistics on who is online etc."
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "django-request-1.6.1.tar.gz", hash = "sha256:2464a77cdd791fe76162eea2f844c4cba7cb6fcdda9a5d3d86c9d4b6d9162330"},
-    {file = "django_request-1.6.1-py3-none-any.whl", hash = "sha256:be85d78631c2990f07f9170588b95036db446f0a07a0865487133435c797d2f9"},
+    {file = "django-request-1.6.2.tar.gz", hash = "sha256:51c390344c31044e791c36f01eec44cb73d132b7f47e62b005430b37d53b684b"},
+    {file = "django_request-1.6.2-py3-none-any.whl", hash = "sha256:61ee2bc2c823e14450dc0a18b12868e06487bbf3f26ad29ef4d41e3f145e49ae"},
 ]
 
 [package.dependencies]
@@ -2125,4 +2125,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "7ace4aa106747e40aedbd5c0cdda58e81732b4969d91f81122881110949b77d5"
+content-hash = "9ece39b7426f0c6829fe82e65532d218351d32fac03f191ca3e2f721c8a1b2a1"
