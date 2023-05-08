@@ -1199,14 +1199,14 @@ files = [
 
 [[package]]
 name = "pip-licenses"
-version = "4.0.3"
+version = "4.3.1"
 description = "Dump the software license list of Python packages installed with pip."
 category = "dev"
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "pip-licenses-4.0.3.tar.gz", hash = "sha256:f57c064fa2044685348b72b7adf1e81fc9f87b9b56257b0bc14fe63d3346a56a"},
-    {file = "pip_licenses-4.0.3-py3-none-any.whl", hash = "sha256:2862c136b2aeb8791a5cd8ea6ca1eddda278502172155f68b4883da413186eaf"},
+    {file = "pip-licenses-4.3.1.tar.gz", hash = "sha256:80236ae03036f0edccae57489de3932aa93984a7b552f4fd47399b08793918ff"},
+    {file = "pip_licenses-4.3.1-py3-none-any.whl", hash = "sha256:1e6652f7f3bd173e0a3551202e19518b21ac1d5ab1a2b54e08d96ee67146f9ca"},
 ]
 
 [package.dependencies]
@@ -2125,4 +2125,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "7ace4aa106747e40aedbd5c0cdda58e81732b4969d91f81122881110949b77d5"
+content-hash = "2f4a76fea7511bd01e82bfbb1508b7a223b3ea45496f7f7cf9529e8986634070"
