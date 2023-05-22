@@ -45,7 +45,7 @@ factory-boy = "^3.2.1"
 pytest-cov = "^4.0.0"
 pytest-profiling = "^1.7.0"
 lizard = "^1.17.10"
-pip-licenses = "^4.0.3"
+pip-licenses = "^4.3.2"
 pipdeptree = "^2.5.0"
 graphviz = "^0.20"
 
