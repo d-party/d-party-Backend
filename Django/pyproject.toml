@@ -8,7 +8,7 @@ packages = [{include = "d_party"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-Django = "^4.1.6"
+Django = "^4.2.5"
 gunicorn = "^20.1.0"
 mysqlclient = "^2.1.1"
 channels-redis = "^4.0.0"
