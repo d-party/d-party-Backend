@@ -3,8 +3,6 @@ import json
 
 from channels.db import database_sync_to_async
 from django.db import transaction
-from django.db.models import F, Value
-from django.db.models.functions import Greatest
 from djangochannelsrestframework.decorators import action
 from djangochannelsrestframework.generics import GenericAsyncAPIConsumer
 
@@ -40,11 +38,6 @@ from .util import is_valid_uuid
 # 内の dict + asyncio.Task で追跡（runserver / 単一 daphne ワーカー前提）。
 ROOM_GRACE_SECONDS = 60.0
 _pending_room_deletes: dict[str, asyncio.Task] = {}
-
-
-@database_sync_to_async
-def _count_alive_users_in_room(room_id_str: str) -> int:
-    return AnimeUser.objects.alive().filter(room_id=room_id_str).count()
 
 
 @database_sync_to_async
@@ -215,7 +208,6 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
             response=user_add,
             sender_channel_name=self.channel_name,
         )
-        await self.database_increase_num_people()
         await self.channel_layer.group_send(
             str(self.anime_room.room_id),
             response_data.model_dump(mode="json"),
@@ -560,7 +552,7 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
         )
 
         await self.database_delete_user()
-        await self.database_decrease_num_people()
+        # 在室人数は AnimeUser から都度数える（AnimeRoom には人数カラムを持たない）。
         user_count = await self.database_get_user_count()
         # オーナー退室時自動削除。オーナーが抜けたら残りの参加者ごとルームを即削除し、
         # 全員へ room_deleted を通知する。猶予削除やホスト委譲は行わない。
@@ -667,7 +659,10 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
             part_id (str): 現在視聴している動画のID(dアニメストアが発行)
         """
         self.anime_room.part_id = part_id
-        self.anime_room.save()
+        # 接続ごとにキャッシュした行の全カラムを書き戻さない。旧実装は素の save() で
+        # 参加時点の古い値ごと上書きしており、廃止前の num_people / sum_people が
+        # 巻き戻る原因になっていた。
+        self.anime_room.save(update_fields=["part_id", "updated_at"])
 
     @database_sync_to_async
     def database_delete_room_and_users(self):
@@ -681,30 +676,6 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
         fold_room_reactions(room_id)
         AnimeUser.objects.alive().filter(room_id=room_id).delete()
         AnimeRoom.objects.alive().filter(room_id=room_id).delete()
-
-    @database_sync_to_async
-    def database_increase_num_people(self):
-        """人が増えた場合にデータベースのnum_peopleとsum_peopleを加算する"""
-        self.anime_room.num_people = int(self.anime_room.num_people) + 1
-        # TODO
-        # sum_peopleがなぜか減ってしまう問題が発生している。特に減らすコードはどこにも書いていないのになぜ・・・
-        # 最悪ユーザーをカウントすればいいだけなので問題ないけど
-        self.anime_room.sum_people = int(self.anime_room.sum_people) + 1
-        self.anime_room.save()
-
-    @database_sync_to_async
-    def database_decrease_num_people(self):
-        """人が減った場合にnum_peopleを減らす。
-
-        各接続が保持する ``self.anime_room`` のキャッシュ値をそのまま ``save()`` すると、
-        別接続の増減を取りこぼして num_people が実在室数とずれ、``PositiveSmallIntegerField``
-        の制約（>= 0）を割り込んで IntegrityError になり得る。特にオーナー退室後もルームが
-        存続する（自動削除しない）場合に残った参加者が抜ける経路で顕在化する。DB 上の
-        現在値に対してアトミックに 1 減算し、0 未満にはしない。
-        """
-        AnimeRoom.objects.filter(room_id=self.anime_room.room_id).update(
-            num_people=Greatest(F("num_people") - 1, Value(0))
-        )
 
     @database_sync_to_async
     def database_promote_next_host(self):
@@ -731,9 +702,14 @@ class AnimePartyConsumer(GenericAsyncAPIConsumer):
 
     @database_sync_to_async
     def database_get_user_count(self):
-        """ルーム内の人数を取得する"""
+        """ルーム内の現在の人数を取得する。
+
+        人数は ``AnimeRoom`` にキャッシュせず、常に ``AnimeUser``（論理削除されて
+        いない行）から数える。観覧専用（spectator）接続は ``AnimeUser`` を持たない
+        ため数に入らない。
+        """
         ar = AnimeRoom.objects.get(room_id=self.anime_room.room_id)
-        return ar.inroom.alive().count()
+        return ar.alive_user_count
 
     @database_sync_to_async
     def database_get_or_none_room(self, room_id):

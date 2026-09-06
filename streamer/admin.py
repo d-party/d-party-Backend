@@ -40,9 +40,25 @@ class AnimeRoomAdmin(LogicalDeletionModelAdmin):
         "title",
         "part_id",
         "num_people",
+        "sum_people",
         "created_at",
         "deleted_at",
     )
+
+    def get_queryset(self, request):
+        # 人数は AnimeRoom のカラムではなく AnimeUser から導出する。一覧の各行で
+        # COUNT を撃たないよう、クエリセット側でまとめて注釈しておく（N+1 回避）。
+        return super().get_queryset(request).with_people_counts()
+
+    @admin.display(description=_("in room"), ordering="num_people")
+    def num_people(self, obj):
+        """現在の在室人数（``with_people_counts()`` の注釈）。"""
+        return obj.num_people
+
+    @admin.display(description=_("total joined"), ordering="sum_people")
+    def sum_people(self, obj):
+        """累計参加人数（退室済みを含む。``with_people_counts()`` の注釈）。"""
+        return obj.sum_people
 
 
 @admin.register(AnimeUser)

@@ -1,21 +1,71 @@
 import uuid
+from typing import ClassVar
 
 from django.db import models
+from django.db.models import Count, Q
 
 from .fields import EncryptedCharField
-from .mixins import LogicalDeletionMixin
+from .mixins import (
+    LogicalDeletionManager,
+    LogicalDeletionMixin,
+    LogicalDeletionQuerySet,
+)
+
+
+class AnimeRoomQuerySet(LogicalDeletionQuerySet):
+    """``AnimeRoom`` 用のクエリセット。人数の集計ヘルパを提供する。"""
+
+    def with_people_counts(self):
+        """``num_people`` / ``sum_people`` を ``AnimeUser`` から導出して注釈する。
+
+        かつては ``AnimeRoom`` の実カラムとして持ち、join / leave のたびに
+        インクリメント・デクリメントしていたが、``AnimeUser`` が既に人数の
+        単一の真実であり、キャッシュ側が容易に実体とズレた（別接続がキャッシュ
+        した行全体を ``save()`` で書き戻す・非アトミックな read-modify-write・
+        ``close_active_sessions`` による幽霊ユーザーの掃除が人数を減らさない、等）。
+        そのためカラムを廃し、必要な経路でここから導出する。
+
+        * ``num_people``: 現在の在室人数（論理削除されていない ``AnimeUser``）。
+        * ``sum_people``: 累計参加人数（退室済み＝論理削除済みも含む）。
+          ``AnimeUser`` は物理削除されないため、これが累計になる。
+
+        いずれもホスト（ルーム作成者）を 1 人として数える。観覧専用
+        （spectator）接続は ``AnimeUser`` を作らないため、従来どおり数えない。
+        """
+        return self.annotate(
+            num_people=Count("inroom", filter=Q(inroom__deleted_at__isnull=True)),
+            sum_people=Count("inroom"),
+        )
+
+
+class AnimeRoomManager(LogicalDeletionManager.from_queryset(AnimeRoomQuerySet)):  # type: ignore[misc]
+    """``AnimeRoomQuerySet`` を公開するマネージャ。"""
 
 
 class AnimeRoom(LogicalDeletionMixin):
     room_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    num_people = models.PositiveSmallIntegerField(default=1)
-    sum_people = models.PositiveSmallIntegerField(default=1)
     part_id = models.CharField(max_length=16)
     # 視聴中アニメのタイトル。ルーム作成時に拡張機能がページ DOM から取得して
     # 一度だけ送信する（以降は更新しない）。OGP 等の表示に使う。
     title = models.CharField(max_length=255, blank=True, default="")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    objects: ClassVar[AnimeRoomManager] = AnimeRoomManager()
+
+    @property
+    def alive_user_count(self) -> int:
+        """現在の在室人数。1 行だけ欲しい場合のヘルパ（都度 COUNT を発行する）。
+
+        一覧のように複数行を扱う場合は N+1 になるので
+        ``AnimeRoom.objects.with_people_counts()`` を使うこと。
+        """
+        return self.inroom.alive().count()
+
+    @property
+    def total_user_count(self) -> int:
+        """累計参加人数（退室済みも含む）。``alive_user_count`` と同じ注意点がある。"""
+        return self.inroom.count()
 
 
 class Setting(models.Model):

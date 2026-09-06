@@ -229,8 +229,8 @@ class TestAnimePartyConsumer(TransactionTestCase):
         assert await self.room_alive(room_id) is False
         assert await self.alive_user_count(room_id) == 0
 
-        # 既存テストにならい片方のみ切断する（num_people は作成者を数えないため、
-        # 2 回 decrement すると CHECK 制約 >= 0 を割る既知の会計上の癖を避ける）。
+        # 片方のみ切断する。ルームは既に削除済みで、残った接続を切ると leave_party が
+        # 猶予削除タスクを起こしてテスト終了後に DB を触りに行くため。
         await host.disconnect()
 
     @pytest.mark.django_db(transaction=True)
@@ -279,7 +279,8 @@ class TestAnimePartyConsumer(TransactionTestCase):
         assert await self.room_alive(room_id) is True
         assert await self.alive_user_count(room_id) == 2
 
-        # 片方のみ切断する（num_people の二重 decrement による CHECK 制約違反を避ける）。
+        # 片方のみ切断する（両方切ると空室になり、猶予削除タスクがテスト終了後に
+        # DB を触りに行くため）。
         await host.disconnect()
 
     @pytest.mark.django_db(transaction=True)
@@ -739,6 +740,49 @@ class TestAnimePartyConsumer(TransactionTestCase):
 
     @pytest.mark.django_db(transaction=True)
     @pytest.mark.asyncio
+    async def test_room_people_counts_follow_join_and_leave(self):
+        """在室人数・累計参加人数が join / leave に追随するテスト。
+
+        人数は AnimeRoom のカラムではなく AnimeUser から導出するため、退室しても
+        累計（sum_people）は減らず、在室（num_people）だけが減る。
+        """
+        host = WebsocketCommunicator(
+            AnimePartyConsumer.as_asgi(), "/anime-store/party/"
+        )
+        await host.connect()
+        room_id = await self._create_room(host)
+        await self._recv_until(host, "room_setting")
+        # ルーム作成直後はホストの 1 人だけ（作成者も AnimeUser として数える）。
+        assert await self.room_people_counts(room_id) == (1, 1)
+
+        guests = []
+        for i in range(2):
+            guest = WebsocketCommunicator(
+                AnimePartyConsumer.as_asgi(), "/anime-store/party/"
+            )
+            await guest.connect()
+            await guest.send_json_to(
+                {
+                    "action": "join",
+                    "user_name": f"guest_user{i}",
+                    "room_id": room_id,
+                    "request_id": 100,
+                }
+            )
+            await self._recv_until(guest, "room_setting")
+            guests.append(guest)
+
+        assert await self.room_people_counts(room_id) == (3, 3)
+
+        # 1 人退室すると在室だけが減り、累計は 3 のまま。
+        await guests[0].disconnect()
+        assert await self.room_people_counts(room_id) == (2, 3)
+
+        await guests[1].disconnect()
+        await host.disconnect()
+
+    @pytest.mark.django_db(transaction=True)
+    @pytest.mark.asyncio
     async def test_disable_reaction_not_broadcast_or_persisted(self):
         """リアクション禁止設定では、他参加者へ配信されず統計にも記録されないテスト。"""
         host = WebsocketCommunicator(
@@ -852,6 +896,12 @@ class TestAnimePartyConsumer(TransactionTestCase):
     @database_sync_to_async
     def alive_user_count(self, room_id):
         return AnimeUser.objects.alive().filter(room_id=room_id).count()
+
+    @database_sync_to_async
+    def room_people_counts(self, room_id):
+        """``(在室人数, 累計参加人数)`` を AnimeUser から導出して返す。"""
+        room = AnimeRoom.objects.with_people_counts().get(room_id=room_id)
+        return (room.num_people, room.sum_people)
 
     @database_sync_to_async
     def anime_user_exist(self, user_id):
